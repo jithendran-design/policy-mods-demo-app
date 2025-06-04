@@ -6,99 +6,130 @@ interface ReviewStepProps {
 
 export const ReviewStep = ({ formData, insuranceType }: ReviewStepProps) => {
   return (
-    <div className="space-y-6 min-h-[400px]">
-      <div className="bg-white p-6 rounded-lg space-y-4 shadow-sm border border-gray-200">
-        <div className="grid md:grid-cols-2 gap-4">
-          <div className="space-y-3">
-            <div className="flex justify-between">
-              <span className="font-medium text-gray-700">Name:</span>
-              <span className="text-gray-900">{formData.firstName} {formData.lastName}</span>
+    <div className="space-y-8 min-h-[400px]">
+      {/* Personal Information Section */}
+      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-100">
+        <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+          <div className="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">
+            1
+          </div>
+          Personal Information
+        </h3>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="space-y-4">
+            <div className="bg-white p-4 rounded-lg border border-gray-100">
+              <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">Full Name</span>
+              <p className="text-lg font-semibold text-gray-900 mt-1">{formData.firstName} {formData.lastName}</p>
             </div>
-            <div className="flex justify-between">
-              <span className="font-medium text-gray-700">Email:</span>
-              <span className="text-gray-900">{formData.email}</span>
+            <div className="bg-white p-4 rounded-lg border border-gray-100">
+              <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">Email Address</span>
+              <p className="text-lg font-semibold text-gray-900 mt-1">{formData.email}</p>
             </div>
-            <div className="flex justify-between">
-              <span className="font-medium text-gray-700">Phone:</span>
-              <span className="text-gray-900">{formData.phone}</span>
+            <div className="bg-white p-4 rounded-lg border border-gray-100">
+              <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">Phone Number</span>
+              <p className="text-lg font-semibold text-gray-900 mt-1">{formData.phone}</p>
             </div>
           </div>
-          <div className="space-y-3">
-            <div className="flex justify-between">
-              <span className="font-medium text-gray-700">Address:</span>
-              <span className="text-gray-900 text-right">{formData.address}</span>
+          <div className="space-y-4">
+            <div className="bg-white p-4 rounded-lg border border-gray-100">
+              <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">Address</span>
+              <p className="text-lg font-semibold text-gray-900 mt-1">{formData.address}</p>
             </div>
-            <div className="flex justify-between">
-              <span className="font-medium text-gray-700">Coverage Level:</span>
-              <span className="text-gray-900 capitalize">{formData.coverageLevel}</span>
+            <div className="bg-white p-4 rounded-lg border border-gray-100">
+              <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">Coverage Level</span>
+              <p className="text-lg font-semibold text-gray-900 mt-1 capitalize">{formData.coverageLevel}</p>
             </div>
-            <div className="flex justify-between">
-              <span className="font-medium text-gray-700">Deductible:</span>
-              <span className="text-gray-900">${formData.deductible}</span>
+            <div className="bg-white p-4 rounded-lg border border-gray-100">
+              <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">Deductible</span>
+              <p className="text-lg font-semibold text-gray-900 mt-1">${formData.deductible}</p>
             </div>
           </div>
         </div>
-        
-        {insuranceType === "auto" && (
-          <div className="mt-6 pt-4 border-t border-gray-200">
-            <h4 className="font-semibold text-gray-800 mb-3">Vehicle Details</h4>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="flex justify-between">
-                <span className="font-medium text-gray-700">Vehicle:</span>
-                <span className="text-gray-900">{formData.vehicleYear} {formData.vehicleMake} {formData.vehicleModel}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="font-medium text-gray-700">Annual Mileage:</span>
-                <span className="text-gray-900">{formData.annualMileage} miles</span>
-              </div>
-            </div>
-          </div>
-        )}
-        
-        {insuranceType === "health" && (
-          <div className="mt-6 pt-4 border-t border-gray-200">
-            <h4 className="font-semibold text-gray-800 mb-3">Health Information</h4>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <div className="flex justify-between">
-                  <span className="font-medium text-gray-700">Height:</span>
-                  <span className="text-gray-900">{formData.height}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="font-medium text-gray-700">Weight:</span>
-                  <span className="text-gray-900">{formData.weight}</span>
-                </div>
-              </div>
-              <div className="space-y-2">
-                <div className="flex justify-between">
-                  <span className="font-medium text-gray-700">Smoking Status:</span>
-                  <span className="text-gray-900 capitalize">{formData.smokingStatus}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="font-medium text-gray-700">Medical Conditions:</span>
-                  <span className="text-gray-900 capitalize">{formData.medicalConditions}</span>
-                </div>
-              </div>
-            </div>
-            
-            {formData.familyMembers && formData.familyMembers.length > 0 && (
-              <div className="mt-4 pt-4 border-t border-gray-200">
-                <h5 className="font-semibold text-gray-800 mb-3">Family Members</h5>
-                <div className="space-y-2">
-                  {formData.familyMembers.map((member: any, index: number) => (
-                    <div key={member.id} className="flex justify-between">
-                      <span className="font-medium text-gray-700">{member.name}:</span>
-                      <span className="text-gray-900">
-                        {member.relationship}, Age {member.age}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        )}
       </div>
+
+      {/* Vehicle Details Section */}
+      {insuranceType === "auto" && (
+        <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-xl border border-green-100">
+          <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+            <div className="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">
+              2
+            </div>
+            Vehicle Details
+          </h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-white p-4 rounded-lg border border-gray-100">
+              <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">Vehicle</span>
+              <p className="text-lg font-semibold text-gray-900 mt-1">{formData.vehicleYear} {formData.vehicleMake} {formData.vehicleModel}</p>
+            </div>
+            <div className="bg-white p-4 rounded-lg border border-gray-100">
+              <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">Annual Mileage</span>
+              <p className="text-lg font-semibold text-gray-900 mt-1">{formData.annualMileage} miles</p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Health Information Section */}
+      {insuranceType === "health" && (
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-xl border border-purple-100">
+          <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+            <div className="w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">
+              2
+            </div>
+            Health Information
+          </h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-4">
+              <div className="bg-white p-4 rounded-lg border border-gray-100">
+                <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">Height</span>
+                <p className="text-lg font-semibold text-gray-900 mt-1">{formData.height}</p>
+              </div>
+              <div className="bg-white p-4 rounded-lg border border-gray-100">
+                <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">Weight</span>
+                <p className="text-lg font-semibold text-gray-900 mt-1">{formData.weight}</p>
+              </div>
+            </div>
+            <div className="space-y-4">
+              <div className="bg-white p-4 rounded-lg border border-gray-100">
+                <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">Smoking Status</span>
+                <p className="text-lg font-semibold text-gray-900 mt-1 capitalize">{formData.smokingStatus}</p>
+              </div>
+              <div className="bg-white p-4 rounded-lg border border-gray-100">
+                <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">Medical Conditions</span>
+                <p className="text-lg font-semibold text-gray-900 mt-1 capitalize">{formData.medicalConditions}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Family Members Subsection */}
+          {formData.familyMembers && formData.familyMembers.length > 0 && (
+            <div className="mt-8 bg-white p-6 rounded-xl border border-purple-200">
+              <h4 className="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                <div className="w-6 h-6 bg-purple-400 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">
+                  3
+                </div>
+                Family Members
+              </h4>
+              <div className="grid gap-4">
+                {formData.familyMembers.map((member: any, index: number) => (
+                  <div key={member.id} className="bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-lg border border-purple-100">
+                    <div className="flex justify-between items-center">
+                      <div>
+                        <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">Family Member {index + 1}</span>
+                        <p className="text-lg font-semibold text-gray-900">{member.name}</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-sm text-gray-600">{member.relationship}</p>
+                        <p className="text-lg font-semibold text-gray-900">Age {member.age}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };
