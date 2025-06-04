@@ -63,7 +63,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-purple-100">
       <Header />
       
       <div className="container mx-auto px-4 py-12">
@@ -87,7 +87,7 @@ const Index = () => {
                 key={insurance.id}
                 className={`cursor-pointer transition-all duration-300 border-2 ${
                   isSelected 
-                    ? 'border-primary bg-blue-50 shadow-lg' 
+                    ? 'border-primary bg-purple-50 shadow-lg' 
                     : 'border-gray-200 hover:border-primary/40 hover:shadow-md'
                 }`}
                 onClick={() => handleInsuranceSelect(insurance.id)}

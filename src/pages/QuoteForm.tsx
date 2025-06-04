@@ -107,13 +107,13 @@ const QuoteForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-purple-100">
       <Header />
       
       <div className="py-12">
         <div className="container mx-auto px-4 max-w-4xl">
           <Card className="shadow-xl border-0 overflow-hidden rounded-2xl">
-            <CardHeader className="bg-gradient-to-r from-primary to-blue-600 text-white p-8">
+            <CardHeader className="bg-gradient-to-r from-primary to-purple-600 text-white p-8">
               <CardTitle className="text-2xl font-bold mb-6">{getInsuranceTitle(type || "")} Quote</CardTitle>
               <div>
                 <div className="flex justify-between text-sm mb-3">

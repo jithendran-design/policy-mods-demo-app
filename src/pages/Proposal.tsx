@@ -220,7 +220,7 @@ const Proposal = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-purple-100 to-purple-200">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-purple-100">
       <Header />
       
       <div className="container mx-auto px-4 py-8 max-w-6xl">
