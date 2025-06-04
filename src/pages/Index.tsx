@@ -2,13 +2,14 @@
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Shield, Car, Home, Heart, Briefcase } from "lucide-react";
+import { Shield, Car, Home, Heart, Briefcase, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const Index = () => {
   const navigate = useNavigate();
+  const [selectedInsurance, setSelectedInsurance] = useState<string>("auto");
   
   const insuranceTypes = [
     {
@@ -16,44 +17,58 @@ const Index = () => {
       title: "Auto Insurance",
       description: "Protect your vehicle with comprehensive coverage",
       icon: Car,
-      color: "bg-[#3C71DD]"
+      color: "bg-[#3C71DD]",
+      startingPrice: "$89",
+      coverage: "Up to $1M coverage"
     },
     {
       id: "home",
       title: "Home Insurance", 
       description: "Secure your home and belongings",
       icon: Home,
-      color: "bg-[#4F7FE6]"
+      color: "bg-[#4F7FE6]",
+      startingPrice: "$156",
+      coverage: "Up to $2M coverage"
     },
     {
       id: "health",
       title: "Health Insurance",
       description: "Comprehensive health coverage for you and your family",
       icon: Heart,
-      color: "bg-[#628DEF]"
+      color: "bg-[#628DEF]",
+      startingPrice: "$299",
+      coverage: "Individual & Family plans"
     },
     {
       id: "life",
       title: "Life Insurance",
       description: "Financial protection for your loved ones",
       icon: Shield,
-      color: "bg-[#759BF8]"
+      color: "bg-[#759BF8]",
+      startingPrice: "$45",
+      coverage: "Up to $5M coverage"
     },
     {
       id: "business",
       title: "Business Insurance",
       description: "Protect your business operations and assets",
       icon: Briefcase,
-      color: "bg-[#88A9FF]"
+      color: "bg-[#88A9FF]",
+      startingPrice: "$199",
+      coverage: "Comprehensive business protection"
     }
   ];
 
   const handleInsuranceSelect = (type: string) => {
-    navigate(`/quote/${type}`);
+    setSelectedInsurance(type);
+  };
+
+  const handleGetQuote = () => {
+    navigate(`/quote/${selectedInsurance}`);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-indigo-200">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-blue-200">
       <Header />
       
       <div className="container mx-auto px-4 py-12">
@@ -68,32 +83,73 @@ const Index = () => {
         </div>
 
         {/* Insurance Types Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-8">
           {insuranceTypes.map((insurance) => {
             const IconComponent = insurance.icon;
+            const isSelected = selectedInsurance === insurance.id;
             return (
               <Card 
                 key={insurance.id}
-                className="hover:shadow-xl transition-all duration-300 cursor-pointer group hover:scale-105 flex flex-col h-full border-[#3C71DD]/20 hover:border-[#3C71DD]/40"
+                className={`cursor-pointer transition-all duration-300 border-2 ${
+                  isSelected 
+                    ? 'border-[#3C71DD] bg-blue-50 shadow-lg' 
+                    : 'border-gray-200 hover:border-[#3C71DD]/40 hover:shadow-md'
+                }`}
                 onClick={() => handleInsuranceSelect(insurance.id)}
               >
-                <CardHeader className="text-center flex-grow">
-                  <div className={`${insurance.color} w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-lg`}>
-                    <IconComponent className="h-8 w-8 text-white" />
+                <CardHeader className="pb-4">
+                  <div className="flex items-start justify-between">
+                    <div className="flex items-center space-x-3">
+                      <div className={`${insurance.color} w-12 h-12 rounded-lg flex items-center justify-center`}>
+                        <IconComponent className="h-6 w-6 text-white" />
+                      </div>
+                      <div>
+                        <CardTitle className="text-lg text-gray-900">{insurance.title}</CardTitle>
+                      </div>
+                    </div>
+                    <div className={`w-5 h-5 rounded-full border-2 ${
+                      isSelected 
+                        ? 'border-[#3C71DD] bg-[#3C71DD]' 
+                        : 'border-gray-300'
+                    } flex items-center justify-center`}>
+                      {isSelected && (
+                        <div className="w-2 h-2 bg-white rounded-full"></div>
+                      )}
+                    </div>
                   </div>
-                  <CardTitle className="text-xl text-gray-800">{insurance.title}</CardTitle>
-                  <CardDescription className="text-gray-600">
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <CardDescription className="text-gray-600 mb-4">
                     {insurance.description}
                   </CardDescription>
-                </CardHeader>
-                <CardContent className="mt-auto">
-                  <Button className="w-full bg-[#3C71DD] hover:bg-[#2F5FC7] text-white font-medium py-2.5 rounded-lg transition-colors duration-200">
-                    Get Quote
-                  </Button>
+                  <div className="space-y-2">
+                    <div className="text-2xl font-bold text-gray-900">
+                      Starting at {insurance.startingPrice}
+                      <span className="text-sm font-normal text-gray-500">/month</span>
+                    </div>
+                    <div className="text-sm text-gray-500">
+                      {insurance.coverage}
+                    </div>
+                  </div>
+                  <div className="mt-4">
+                    <button className="text-[#3C71DD] text-sm font-medium flex items-center hover:text-[#2F5FC7] transition-colors">
+                      Compare plans <ArrowRight className="h-4 w-4 ml-1" />
+                    </button>
+                  </div>
                 </CardContent>
               </Card>
             );
           })}
+        </div>
+
+        {/* Get Quote Button */}
+        <div className="text-center mb-16">
+          <Button 
+            onClick={handleGetQuote}
+            className="bg-[#3C71DD] hover:bg-[#2F5FC7] text-white font-medium py-3 px-8 text-lg rounded-lg transition-colors duration-200"
+          >
+            Get Quote for {insuranceTypes.find(i => i.id === selectedInsurance)?.title}
+          </Button>
         </div>
 
         {/* Features Section */}
