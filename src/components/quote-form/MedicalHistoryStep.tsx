@@ -3,20 +3,20 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-interface HealthCoverageStepProps {
+interface MedicalHistoryStepProps {
   formData: any;
   onInputChange: (field: string, value: string) => void;
 }
 
-export const HealthCoverageStep = ({ formData, onInputChange }: HealthCoverageStepProps) => {
+export const MedicalHistoryStep = ({ formData, onInputChange }: MedicalHistoryStepProps) => {
   return (
-    <div className="space-y-6 min-h-[400px]" data-testid="health-coverage-step-simple">
+    <div className="space-y-6 min-h-[400px]" data-testid="medical-history-step">
       <div className="grid md:grid-cols-2 gap-6">
         <div className="space-y-2">
           <Label htmlFor="height" className="text-gray-700 font-medium">Height</Label>
           <Input
             id="height"
-            data-testid="height-input-simple"
+            data-testid="height-input"
             placeholder="5'8&quot;"
             value={formData.height || ""}
             onChange={(e) => onInputChange("height", e.target.value)}
@@ -27,7 +27,7 @@ export const HealthCoverageStep = ({ formData, onInputChange }: HealthCoverageSt
           <Label htmlFor="weight" className="text-gray-700 font-medium">Weight</Label>
           <Input
             id="weight"
-            data-testid="weight-input-simple"
+            data-testid="weight-input"
             placeholder="150 lbs"
             value={formData.weight || ""}
             onChange={(e) => onInputChange("weight", e.target.value)}
@@ -41,7 +41,7 @@ export const HealthCoverageStep = ({ formData, onInputChange }: HealthCoverageSt
           <Label htmlFor="smokingStatus" className="text-gray-700 font-medium">Smoking Status</Label>
           <Select onValueChange={(value) => onInputChange("smokingStatus", value)}>
             <SelectTrigger 
-              data-testid="smoking-status-select-simple"
+              data-testid="smoking-status-select"
               className="border-gray-300 focus:border-primary focus:ring-primary rounded-lg bg-white"
             >
               <SelectValue placeholder="Select smoking status" />
@@ -57,7 +57,7 @@ export const HealthCoverageStep = ({ formData, onInputChange }: HealthCoverageSt
           <Label htmlFor="medicalConditions" className="text-gray-700 font-medium">Pre-existing Medical Conditions</Label>
           <Select onValueChange={(value) => onInputChange("medicalConditions", value)}>
             <SelectTrigger 
-              data-testid="medical-conditions-select-simple"
+              data-testid="medical-conditions-select"
               className="border-gray-300 focus:border-primary focus:ring-primary rounded-lg bg-white"
             >
               <SelectValue placeholder="Select if applicable" />
@@ -66,46 +66,24 @@ export const HealthCoverageStep = ({ formData, onInputChange }: HealthCoverageSt
               <SelectItem value="none">None</SelectItem>
               <SelectItem value="diabetes">Diabetes</SelectItem>
               <SelectItem value="heart">Heart condition</SelectItem>
+              <SelectItem value="hypertension">Hypertension</SelectItem>
+              <SelectItem value="asthma">Asthma</SelectItem>
               <SelectItem value="other">Other (please specify)</SelectItem>
             </SelectContent>
           </Select>
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
-        <div className="space-y-2">
-          <Label htmlFor="coverageLevel" className="text-gray-700 font-medium">Coverage Level</Label>
-          <Select onValueChange={(value) => onInputChange("coverageLevel", value)}>
-            <SelectTrigger 
-              data-testid="coverage-level-select-simple"
-              className="border-gray-300 focus:border-primary focus:ring-primary rounded-lg bg-white"
-            >
-              <SelectValue placeholder="Select coverage level" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="basic">Basic Coverage</SelectItem>
-              <SelectItem value="standard">Standard Coverage</SelectItem>
-              <SelectItem value="premium">Premium Coverage</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="deductible" className="text-gray-700 font-medium">Deductible</Label>
-          <Select onValueChange={(value) => onInputChange("deductible", value)}>
-            <SelectTrigger 
-              data-testid="deductible-select-simple"
-              className="border-gray-300 focus:border-primary focus:ring-primary rounded-lg bg-white"
-            >
-              <SelectValue placeholder="Select deductible" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="250">$250</SelectItem>
-              <SelectItem value="500">$500</SelectItem>
-              <SelectItem value="1000">$1,000</SelectItem>
-              <SelectItem value="2500">$2,500</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
+      <div className="space-y-2">
+        <Label htmlFor="currentMedications" className="text-gray-700 font-medium">Current Medications</Label>
+        <Input
+          id="currentMedications"
+          data-testid="medications-input"
+          placeholder="List any current medications (optional)"
+          value={formData.currentMedications || ""}
+          onChange={(e) => onInputChange("currentMedications", e.target.value)}
+          className="border-gray-300 focus:border-primary focus:ring-primary rounded-lg bg-white"
+        />
       </div>
     </div>
   );

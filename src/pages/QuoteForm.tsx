@@ -1,6 +1,6 @@
 
-import { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -10,14 +10,28 @@ import Footer from "@/components/Footer";
 import { PersonalInformationStep } from "@/components/quote-form/PersonalInformationStep";
 import { VehicleDetailsStep } from "@/components/quote-form/VehicleDetailsStep";
 import { HealthCoverageStep } from "@/components/quote-form/HealthCoverageStep";
+import { MedicalHistoryStep } from "@/components/quote-form/MedicalHistoryStep";
+import { CoveragePreferencesStep } from "@/components/quote-form/CoveragePreferencesStep";
+import { FamilyMembersStep } from "@/components/quote-form/FamilyMembersStep";
 import { CoverageOptionsStep } from "@/components/quote-form/CoverageOptionsStep";
 import { ReviewStep } from "@/components/quote-form/ReviewStep";
 
 const QuoteForm = () => {
   const { type } = useParams();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<any>({});
+  
+  const flowType = searchParams.get("flow");
+  const isDetailedFlow = flowType === "detailed";
+
+  useEffect(() => {
+    // Store flow type in form data for later use
+    if (flowType) {
+      setFormData(prev => ({ ...prev, flowType }));
+    }
+  }, [flowType]);
 
   const getInsuranceTitle = (type: string) => {
     const titles: { [key: string]: string } = {
@@ -37,6 +51,9 @@ const QuoteForm = () => {
       case "home":
         return ["Personal Information", "Property Details", "Coverage Options", "Review & Quote"];
       case "health":
+        if (isDetailedFlow) {
+          return ["Personal Information", "Medical History", "Coverage Preferences", "Family Members", "Review & Quote"];
+        }
         return ["Personal Information", "Health & Coverage", "Review & Quote"];
       case "life":
         return ["Personal Information", "Health & Lifestyle", "Coverage Amount", "Review & Quote"];
@@ -51,7 +68,7 @@ const QuoteForm = () => {
   const totalSteps = steps.length;
   const progress = (currentStep / totalSteps) * 100;
 
-  const handleInputChange = (field: string, value: string) => {
+  const handleInputChange = (field: string, value: string | any) => {
     setFormData((prev: any) => ({
       ...prev,
       [field]: value
@@ -74,6 +91,10 @@ const QuoteForm = () => {
     }
   };
 
+  const shouldShowFamilyStep = () => {
+    return type === "health" && isDetailedFlow && formData.planType === "family";
+  };
+
   const renderStepContent = () => {
     if (currentStep === 1) {
       return <PersonalInformationStep formData={formData} onInputChange={handleInputChange} />;
@@ -84,6 +105,9 @@ const QuoteForm = () => {
         return <VehicleDetailsStep formData={formData} onInputChange={handleInputChange} />;
       }
       if (type === "health") {
+        if (isDetailedFlow) {
+          return <MedicalHistoryStep formData={formData} onInputChange={handleInputChange} />;
+        }
         return <HealthCoverageStep formData={formData} onInputChange={handleInputChange} />;
       }
       return <CoverageOptionsStep formData={formData} onInputChange={handleInputChange} />;
@@ -94,16 +118,45 @@ const QuoteForm = () => {
         return <CoverageOptionsStep formData={formData} onInputChange={handleInputChange} />;
       }
       if (type === "health") {
+        if (isDetailedFlow) {
+          return <CoveragePreferencesStep formData={formData} onInputChange={handleInputChange} />;
+        }
         return <ReviewStep formData={formData} insuranceType={type} />;
       }
       return <ReviewStep formData={formData} insuranceType={type} />;
     }
     
     if (currentStep === 4) {
+      if (type === "health" && isDetailedFlow) {
+        return <FamilyMembersStep formData={formData} onInputChange={handleInputChange} />;
+      }
+      return <ReviewStep formData={formData} insuranceType={type} />;
+    }
+    
+    if (currentStep === 5) {
       return <ReviewStep formData={formData} insuranceType={type} />;
     }
     
     return null;
+  };
+
+  const getNextButtonText = () => {
+    if (currentStep === totalSteps) {
+      return "Generate Quote";
+    }
+    if (type === "health" && isDetailedFlow && currentStep === 3 && !shouldShowFamilyStep()) {
+      return "Skip to Review";
+    }
+    return isDetailedFlow ? "Next Step" : "Continue";
+  };
+
+  const handleNextWithSkip = () => {
+    // Skip family step if individual plan is selected
+    if (type === "health" && isDetailedFlow && currentStep === 3 && !shouldShowFamilyStep()) {
+      setCurrentStep(5); // Skip to review step
+    } else {
+      handleNext();
+    }
   };
 
   return (
@@ -112,18 +165,30 @@ const QuoteForm = () => {
       
       <div className="py-12">
         <div className="container mx-auto px-4 max-w-4xl">
-          <Card className="shadow-xl border-0 overflow-hidden rounded-2xl">
+          <Card className="shadow-xl border-0 overflow-hidden rounded-2xl" data-testid="quote-form-card">
             <CardHeader className="bg-gradient-to-r from-primary to-purple-600 text-white p-8">
-              <CardTitle className="text-2xl font-bold mb-6">{getInsuranceTitle(type || "")} Quote</CardTitle>
+              <CardTitle className="text-2xl font-bold mb-6">
+                {getInsuranceTitle(type || "")} Quote
+                {type === "health" && flowType && (
+                  <span className="text-sm font-normal ml-2 opacity-90" data-testid="flow-indicator">
+                    ({flowType === "detailed" ? "Detailed" : "Simple"} Flow)
+                  </span>
+                )}
+              </CardTitle>
               <div>
                 <div className="flex justify-between text-sm mb-3">
-                  <span className="font-medium">Step {currentStep} of {totalSteps}: {steps[currentStep - 1]}</span>
-                  <span className="font-medium">{Math.round(progress)}% Complete</span>
+                  <span className="font-medium" data-testid="step-indicator">
+                    Step {currentStep} of {totalSteps}: {steps[currentStep - 1]}
+                  </span>
+                  <span className="font-medium" data-testid="progress-indicator">
+                    {Math.round(progress)}% Complete
+                  </span>
                 </div>
                 <div className="w-full bg-white/20 rounded-full h-2">
                   <div 
                     className="bg-white h-2 rounded-full transition-all duration-300 ease-in-out"
                     style={{ width: `${progress}%` }}
+                    data-testid="progress-bar"
                   />
                 </div>
               </div>
@@ -136,16 +201,18 @@ const QuoteForm = () => {
                 <Button
                   variant="outline"
                   onClick={handlePrevious}
+                  data-testid="previous-btn"
                   className="flex items-center px-6 py-3 border-gray-300 text-gray-700 hover:bg-gray-50 rounded-lg"
                 >
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   {currentStep === 1 ? "Back to Home" : "Previous"}
                 </Button>
                 <Button
-                  onClick={handleNext}
+                  onClick={handleNextWithSkip}
+                  data-testid="next-btn"
                   className="flex items-center px-8 py-3 bg-primary hover:bg-primary/90 text-white shadow-lg rounded-lg"
                 >
-                  {currentStep === totalSteps ? "Generate Quote" : "Next"}
+                  {getNextButtonText()}
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </div>
