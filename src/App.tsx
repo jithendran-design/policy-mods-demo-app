@@ -11,6 +11,14 @@ import Proposal from "./pages/Proposal";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 
+// Import test utilities for development
+if (process.env.NODE_ENV === 'development') {
+  import('./tests/test-runner').then(({ executeHealthFlowTests }) => {
+    (window as any).executeHealthFlowTests = executeHealthFlowTests;
+    console.log('🧪 Health Flow Tests loaded! Run executeHealthFlowTests() in console to test.');
+  });
+}
+
 const queryClient = new QueryClient();
 
 const App = () => (

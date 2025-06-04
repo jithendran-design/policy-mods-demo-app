@@ -170,7 +170,7 @@ const QuoteForm = () => {
                 {getInsuranceTitle(type || "")} Quote
                 {type === "health" && flowType && (
                   <span className="text-sm font-normal ml-2 opacity-90" data-testid="flow-indicator">
-                    ({flowType === "detailed" ? "Detailed" : "Simple"} Flow)
+                    ({flowType === "detailed" ? "Family" : "Self"} Flow)
                   </span>
                 )}
               </CardTitle>

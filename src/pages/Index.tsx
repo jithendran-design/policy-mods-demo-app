@@ -154,7 +154,7 @@ const Index = () => {
                           size="sm"
                           className="text-xs px-3 py-2 border-primary text-primary hover:bg-primary hover:text-white"
                         >
-                          Simple Flow
+                          Self Flow
                         </Button>
                         <Button
                           onClick={(e) => {
@@ -166,7 +166,7 @@ const Index = () => {
                           size="sm"
                           className="text-xs px-3 py-2 border-primary text-primary hover:bg-primary hover:text-white"
                         >
-                          Detailed Flow
+                          Family Flow
                         </Button>
                       </div>
                     </div>
