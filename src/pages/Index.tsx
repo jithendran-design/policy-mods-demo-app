@@ -16,35 +16,35 @@ const Index = () => {
       title: "Auto Insurance",
       description: "Protect your vehicle with comprehensive coverage",
       icon: Car,
-      color: "bg-[#573CDD]"
+      color: "bg-[#3C71DD]"
     },
     {
       id: "home",
       title: "Home Insurance", 
       description: "Secure your home and belongings",
       icon: Home,
-      color: "bg-[#6B4FE6]"
+      color: "bg-[#4F7FE6]"
     },
     {
       id: "health",
       title: "Health Insurance",
       description: "Comprehensive health coverage for you and your family",
       icon: Heart,
-      color: "bg-[#7F62EF]"
+      color: "bg-[#628DEF]"
     },
     {
       id: "life",
       title: "Life Insurance",
       description: "Financial protection for your loved ones",
       icon: Shield,
-      color: "bg-[#9375F8]"
+      color: "bg-[#759BF8]"
     },
     {
       id: "business",
       title: "Business Insurance",
       description: "Protect your business operations and assets",
       icon: Briefcase,
-      color: "bg-[#A788FF]"
+      color: "bg-[#88A9FF]"
     }
   ];
 
@@ -74,7 +74,7 @@ const Index = () => {
             return (
               <Card 
                 key={insurance.id}
-                className="hover:shadow-xl transition-all duration-300 cursor-pointer group hover:scale-105 flex flex-col h-full border-[#573CDD]/20 hover:border-[#573CDD]/40"
+                className="hover:shadow-xl transition-all duration-300 cursor-pointer group hover:scale-105 flex flex-col h-full border-[#3C71DD]/20 hover:border-[#3C71DD]/40"
                 onClick={() => handleInsuranceSelect(insurance.id)}
               >
                 <CardHeader className="text-center flex-grow">
@@ -87,7 +87,7 @@ const Index = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="mt-auto">
-                  <Button className="w-full bg-[#573CDD] hover:bg-[#4A2FC7] text-white font-medium py-2.5 rounded-lg transition-colors duration-200">
+                  <Button className="w-full bg-[#3C71DD] hover:bg-[#2F5FC7] text-white font-medium py-2.5 rounded-lg transition-colors duration-200">
                     Get Quote
                   </Button>
                 </CardContent>
@@ -97,26 +97,26 @@ const Index = () => {
         </div>
 
         {/* Features Section */}
-        <div className="mt-16 bg-white rounded-xl shadow-xl p-8 border border-[#573CDD]/10">
+        <div className="mt-16 bg-white rounded-xl shadow-xl p-8 border border-[#3C71DD]/10">
           <h2 className="text-2xl font-bold text-center mb-8 text-gray-800">Why Choose SecureGuard?</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="bg-[#573CDD]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Shield className="h-8 w-8 text-[#573CDD]" />
+              <div className="bg-[#3C71DD]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Shield className="h-8 w-8 text-[#3C71DD]" />
               </div>
               <h3 className="font-semibold mb-2 text-gray-800">Comprehensive Coverage</h3>
               <p className="text-gray-600">Tailored policies to meet your specific needs</p>
             </div>
             <div className="text-center">
-              <div className="bg-[#6B4FE6]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-[#6B4FE6] font-bold text-lg">24/7</span>
+              <div className="bg-[#4F7FE6]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-[#4F7FE6] font-bold text-lg">24/7</span>
               </div>
               <h3 className="font-semibold mb-2 text-gray-800">24/7 Support</h3>
               <p className="text-gray-600">Round-the-clock customer service</p>
             </div>
             <div className="text-center">
-              <div className="bg-[#7F62EF]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-[#7F62EF] font-bold text-xl">$</span>
+              <div className="bg-[#628DEF]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-[#628DEF] font-bold text-xl">$</span>
               </div>
               <h3 className="font-semibold mb-2 text-gray-800">Competitive Rates</h3>
               <p className="text-gray-600">Best value for your money</p>
