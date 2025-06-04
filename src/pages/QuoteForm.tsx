@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -36,7 +37,7 @@ const QuoteForm = () => {
       case "home":
         return ["Personal Information", "Property Details", "Coverage Options", "Review & Quote"];
       case "health":
-        return ["Personal Information", "Health Information", "Review & Quote"];
+        return ["Personal Information", "Health & Coverage", "Review & Quote"];
       case "life":
         return ["Personal Information", "Health & Lifestyle", "Coverage Amount", "Review & Quote"];
       case "business":
@@ -156,8 +157,9 @@ const QuoteForm = () => {
     </div>
   );
 
-  const renderHealthInformation = () => (
+  const renderHealthAndCoverage = () => (
     <div className="space-y-6">
+      <h3 className="text-lg font-semibold">Health Information</h3>
       <div className="grid md:grid-cols-2 gap-4">
         <div>
           <Label htmlFor="height">Height</Label>
@@ -208,6 +210,7 @@ const QuoteForm = () => {
         </Select>
       </div>
 
+      <h3 className="text-lg font-semibold mt-8">Coverage Preferences</h3>
       <div className="grid md:grid-cols-2 gap-4">
         <div>
           <Label htmlFor="coverageLevel">Coverage Level</Label>
@@ -387,7 +390,7 @@ const QuoteForm = () => {
     if (currentStep === 1) return renderPersonalInformation();
     if (currentStep === 2) {
       if (type === "auto") return renderAutoDetails();
-      if (type === "health") return renderHealthInformation();
+      if (type === "health") return renderHealthAndCoverage();
       return renderCoverageOptions();
     }
     if (currentStep === 3) {
