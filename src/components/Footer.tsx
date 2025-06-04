@@ -11,7 +11,7 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <div className="flex items-center mb-4">
-              <Shield className="h-8 w-8 text-[#3CA7DD] mr-2" />
+              <Shield className="h-8 w-8 text-[#573CDD] mr-2" />
               <div>
                 <h3 className="text-xl font-bold">SecureGuard</h3>
                 <p className="text-sm text-gray-400">Financial Services</p>
@@ -21,10 +21,10 @@ const Footer = () => {
               Protecting what matters most to you with comprehensive insurance solutions and financial services since 1985.
             </p>
             <div className="flex space-x-3">
-              <Facebook className="h-5 w-5 text-gray-400 hover:text-[#3CA7DD] cursor-pointer transition-colors" />
-              <Twitter className="h-5 w-5 text-gray-400 hover:text-[#3CA7DD] cursor-pointer transition-colors" />
-              <Linkedin className="h-5 w-5 text-gray-400 hover:text-[#3CA7DD] cursor-pointer transition-colors" />
-              <Instagram className="h-5 w-5 text-gray-400 hover:text-[#3CA7DD] cursor-pointer transition-colors" />
+              <Facebook className="h-5 w-5 text-gray-400 hover:text-[#573CDD] cursor-pointer transition-colors" />
+              <Twitter className="h-5 w-5 text-gray-400 hover:text-[#573CDD] cursor-pointer transition-colors" />
+              <Linkedin className="h-5 w-5 text-gray-400 hover:text-[#573CDD] cursor-pointer transition-colors" />
+              <Instagram className="h-5 w-5 text-gray-400 hover:text-[#573CDD] cursor-pointer transition-colors" />
             </div>
           </div>
 
@@ -32,12 +32,12 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Insurance Products</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="text-gray-300 hover:text-[#3CA7DD] transition-colors">Auto Insurance</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-[#3CA7DD] transition-colors">Home Insurance</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-[#3CA7DD] transition-colors">Life Insurance</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-[#3CA7DD] transition-colors">Health Insurance</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-[#3CA7DD] transition-colors">Business Insurance</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-[#3CA7DD] transition-colors">Travel Insurance</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-[#573CDD] transition-colors">Auto Insurance</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-[#573CDD] transition-colors">Home Insurance</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-[#573CDD] transition-colors">Life Insurance</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-[#573CDD] transition-colors">Health Insurance</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-[#573CDD] transition-colors">Business Insurance</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-[#573CDD] transition-colors">Travel Insurance</a></li>
             </ul>
           </div>
 
@@ -45,12 +45,12 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Customer Support</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="text-gray-300 hover:text-[#3CA7DD] transition-colors">File a Claim</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-[#3CA7DD] transition-colors">Policy Management</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-[#3CA7DD] transition-colors">Payment Center</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-[#3CA7DD] transition-colors">Help Center</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-[#3CA7DD] transition-colors">Contact Agent</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-[#3CA7DD] transition-colors">Forms & Documents</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-[#573CDD] transition-colors">File a Claim</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-[#573CDD] transition-colors">Policy Management</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-[#573CDD] transition-colors">Payment Center</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-[#573CDD] transition-colors">Help Center</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-[#573CDD] transition-colors">Contact Agent</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-[#573CDD] transition-colors">Forms & Documents</a></li>
             </ul>
           </div>
 
@@ -59,18 +59,18 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
             <div className="space-y-3 text-sm">
               <div className="flex items-center">
-                <MapPin className="h-4 w-4 mr-2 text-[#3CA7DD]" />
+                <MapPin className="h-4 w-4 mr-2 text-[#573CDD]" />
                 <span className="text-gray-300">
                   123 Financial District<br />
                   New York, NY 10004
                 </span>
               </div>
               <div className="flex items-center">
-                <Phone className="h-4 w-4 mr-2 text-[#3CA7DD]" />
+                <Phone className="h-4 w-4 mr-2 text-[#573CDD]" />
                 <span className="text-gray-300">1-800-SECURE (732-8731)</span>
               </div>
               <div className="flex items-center">
-                <Mail className="h-4 w-4 mr-2 text-[#3CA7DD]" />
+                <Mail className="h-4 w-4 mr-2 text-[#573CDD]" />
                 <span className="text-gray-300">support@secureguard.com</span>
               </div>
               <div className="mt-4">
@@ -93,10 +93,10 @@ const Footer = () => {
             <p>&copy; 2024 SecureGuard Financial Services. All rights reserved.</p>
           </div>
           <div className="flex space-x-6">
-            <a href="#" className="hover:text-[#3CA7DD] transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-[#3CA7DD] transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-[#3CA7DD] transition-colors">Cookie Policy</a>
-            <a href="#" className="hover:text-[#3CA7DD] transition-colors">Accessibility</a>
+            <a href="#" className="hover:text-[#573CDD] transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-[#573CDD] transition-colors">Terms of Service</a>
+            <a href="#" className="hover:text-[#573CDD] transition-colors">Cookie Policy</a>
+            <a href="#" className="hover:text-[#573CDD] transition-colors">Accessibility</a>
           </div>
         </div>
         <div className="mt-4 text-xs text-gray-500">
