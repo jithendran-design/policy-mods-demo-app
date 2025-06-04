@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -77,7 +78,7 @@ const QuoteForm = () => {
   };
 
   const renderPersonalInformation = () => (
-    <div className="space-y-6">
+    <div className="space-y-6 min-h-[400px]">
       <div className="grid md:grid-cols-2 gap-6">
         <div className="space-y-2">
           <Label htmlFor="firstName" className="text-gray-700 font-medium">First Name</Label>
@@ -86,7 +87,7 @@ const QuoteForm = () => {
             placeholder="John"
             value={formData.firstName || ""}
             onChange={(e) => handleInputChange("firstName", e.target.value)}
-            className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+            className="border-gray-300 focus:border-[#3CA7DD] focus:ring-[#3CA7DD]"
           />
         </div>
         <div className="space-y-2">
@@ -96,7 +97,7 @@ const QuoteForm = () => {
             placeholder="Doe"
             value={formData.lastName || ""}
             onChange={(e) => handleInputChange("lastName", e.target.value)}
-            className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+            className="border-gray-300 focus:border-[#3CA7DD] focus:ring-[#3CA7DD]"
           />
         </div>
       </div>
@@ -110,7 +111,7 @@ const QuoteForm = () => {
             placeholder="john.doe@email.com"
             value={formData.email || ""}
             onChange={(e) => handleInputChange("email", e.target.value)}
-            className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+            className="border-gray-300 focus:border-[#3CA7DD] focus:ring-[#3CA7DD]"
           />
         </div>
         <div className="space-y-2">
@@ -120,7 +121,7 @@ const QuoteForm = () => {
             placeholder="(555) 123-4567"
             value={formData.phone || ""}
             onChange={(e) => handleInputChange("phone", e.target.value)}
-            className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+            className="border-gray-300 focus:border-[#3CA7DD] focus:ring-[#3CA7DD]"
           />
         </div>
       </div>
@@ -132,7 +133,7 @@ const QuoteForm = () => {
           placeholder="123 Main St, City, State 12345"
           value={formData.address || ""}
           onChange={(e) => handleInputChange("address", e.target.value)}
-          className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+          className="border-gray-300 focus:border-[#3CA7DD] focus:ring-[#3CA7DD]"
         />
       </div>
 
@@ -144,13 +145,13 @@ const QuoteForm = () => {
             type="date"
             value={formData.dateOfBirth || ""}
             onChange={(e) => handleInputChange("dateOfBirth", e.target.value)}
-            className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+            className="border-gray-300 focus:border-[#3CA7DD] focus:ring-[#3CA7DD]"
           />
         </div>
         <div className="space-y-2">
           <Label htmlFor="gender" className="text-gray-700 font-medium">Gender</Label>
           <Select onValueChange={(value) => handleInputChange("gender", value)}>
-            <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+            <SelectTrigger className="border-gray-300 focus:border-[#3CA7DD] focus:ring-[#3CA7DD]">
               <SelectValue placeholder="Select gender" />
             </SelectTrigger>
             <SelectContent>
@@ -165,9 +166,9 @@ const QuoteForm = () => {
   );
 
   const renderHealthAndCoverage = () => (
-    <div className="space-y-8">
-      <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
-        <h3 className="text-xl font-semibold text-blue-900 mb-6">Health Information</h3>
+    <div className="space-y-8 min-h-[400px]">
+      <div className="bg-[#E8F4FD] p-6 rounded-lg border border-[#3CA7DD]/30">
+        <h3 className="text-xl font-semibold text-[#2B89CC] mb-6">Health Information</h3>
         <div className="grid md:grid-cols-2 gap-6">
           <div className="space-y-2">
             <Label htmlFor="height" className="text-gray-700 font-medium">Height</Label>
@@ -176,7 +177,7 @@ const QuoteForm = () => {
               placeholder="5'8&quot;"
               value={formData.height || ""}
               onChange={(e) => handleInputChange("height", e.target.value)}
-              className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+              className="border-gray-300 focus:border-[#3CA7DD] focus:ring-[#3CA7DD]"
             />
           </div>
           <div className="space-y-2">
@@ -186,7 +187,7 @@ const QuoteForm = () => {
               placeholder="150 lbs"
               value={formData.weight || ""}
               onChange={(e) => handleInputChange("weight", e.target.value)}
-              className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+              className="border-gray-300 focus:border-[#3CA7DD] focus:ring-[#3CA7DD]"
             />
           </div>
         </div>
@@ -195,7 +196,7 @@ const QuoteForm = () => {
           <div className="space-y-2">
             <Label htmlFor="smokingStatus" className="text-gray-700 font-medium">Smoking Status</Label>
             <Select onValueChange={(value) => handleInputChange("smokingStatus", value)}>
-              <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+              <SelectTrigger className="border-gray-300 focus:border-[#3CA7DD] focus:ring-[#3CA7DD]">
                 <SelectValue placeholder="Select smoking status" />
               </SelectTrigger>
               <SelectContent>
@@ -208,7 +209,7 @@ const QuoteForm = () => {
           <div className="space-y-2">
             <Label htmlFor="medicalConditions" className="text-gray-700 font-medium">Pre-existing Medical Conditions</Label>
             <Select onValueChange={(value) => handleInputChange("medicalConditions", value)}>
-              <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+              <SelectTrigger className="border-gray-300 focus:border-[#3CA7DD] focus:ring-[#3CA7DD]">
                 <SelectValue placeholder="Select if applicable" />
               </SelectTrigger>
               <SelectContent>
@@ -228,7 +229,7 @@ const QuoteForm = () => {
           <div className="space-y-2">
             <Label htmlFor="coverageLevel" className="text-gray-700 font-medium">Coverage Level</Label>
             <Select onValueChange={(value) => handleInputChange("coverageLevel", value)}>
-              <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+              <SelectTrigger className="border-gray-300 focus:border-[#3CA7DD] focus:ring-[#3CA7DD]">
                 <SelectValue placeholder="Select coverage level" />
               </SelectTrigger>
               <SelectContent>
@@ -241,7 +242,7 @@ const QuoteForm = () => {
           <div className="space-y-2">
             <Label htmlFor="deductible" className="text-gray-700 font-medium">Deductible</Label>
             <Select onValueChange={(value) => handleInputChange("deductible", value)}>
-              <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+              <SelectTrigger className="border-gray-300 focus:border-[#3CA7DD] focus:ring-[#3CA7DD]">
                 <SelectValue placeholder="Select deductible" />
               </SelectTrigger>
               <SelectContent>
@@ -258,14 +259,14 @@ const QuoteForm = () => {
   );
 
   const renderAutoDetails = () => (
-    <div className="space-y-6">
-      <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
-        <h3 className="text-xl font-semibold text-blue-900 mb-6">Vehicle Information</h3>
+    <div className="space-y-6 min-h-[400px]">
+      <div className="bg-[#E8F4FD] p-6 rounded-lg border border-[#3CA7DD]/30">
+        <h3 className="text-xl font-semibold text-[#2B89CC] mb-6">Vehicle Information</h3>
         <div className="grid md:grid-cols-2 gap-6">
           <div className="space-y-2">
             <Label htmlFor="vehicleYear" className="text-gray-700 font-medium">Vehicle Year</Label>
             <Select onValueChange={(value) => handleInputChange("vehicleYear", value)}>
-              <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+              <SelectTrigger className="border-gray-300 focus:border-[#3CA7DD] focus:ring-[#3CA7DD]">
                 <SelectValue placeholder="Select year" />
               </SelectTrigger>
               <SelectContent>
@@ -282,7 +283,7 @@ const QuoteForm = () => {
               placeholder="Toyota"
               value={formData.vehicleMake || ""}
               onChange={(e) => handleInputChange("vehicleMake", e.target.value)}
-              className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+              className="border-gray-300 focus:border-[#3CA7DD] focus:ring-[#3CA7DD]"
             />
           </div>
         </div>
@@ -295,7 +296,7 @@ const QuoteForm = () => {
               placeholder="Camry"
               value={formData.vehicleModel || ""}
               onChange={(e) => handleInputChange("vehicleModel", e.target.value)}
-              className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+              className="border-gray-300 focus:border-[#3CA7DD] focus:ring-[#3CA7DD]"
             />
           </div>
           <div className="space-y-2">
@@ -305,7 +306,7 @@ const QuoteForm = () => {
               placeholder="1HGBH41JXMN109186"
               value={formData.vin || ""}
               onChange={(e) => handleInputChange("vin", e.target.value)}
-              className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+              className="border-gray-300 focus:border-[#3CA7DD] focus:ring-[#3CA7DD]"
             />
           </div>
         </div>
@@ -313,7 +314,7 @@ const QuoteForm = () => {
         <div className="mt-6 space-y-2">
           <Label htmlFor="annualMileage" className="text-gray-700 font-medium">Annual Mileage</Label>
           <Select onValueChange={(value) => handleInputChange("annualMileage", value)}>
-            <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+            <SelectTrigger className="border-gray-300 focus:border-[#3CA7DD] focus:ring-[#3CA7DD]">
               <SelectValue placeholder="Select annual mileage" />
             </SelectTrigger>
             <SelectContent>
@@ -330,14 +331,14 @@ const QuoteForm = () => {
   );
 
   const renderCoverageOptions = () => (
-    <div className="space-y-6">
+    <div className="space-y-6 min-h-[400px]">
       <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
         <h3 className="text-xl font-semibold text-gray-900 mb-6">Coverage Options</h3>
         <div className="space-y-6">
           <div className="space-y-2">
             <Label htmlFor="coverageLevel" className="text-gray-700 font-medium">Coverage Level</Label>
             <Select onValueChange={(value) => handleInputChange("coverageLevel", value)}>
-              <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+              <SelectTrigger className="border-gray-300 focus:border-[#3CA7DD] focus:ring-[#3CA7DD]">
                 <SelectValue placeholder="Select coverage level" />
               </SelectTrigger>
               <SelectContent>
@@ -352,7 +353,7 @@ const QuoteForm = () => {
             <div className="space-y-2">
               <Label htmlFor="deductible" className="text-gray-700 font-medium">Deductible</Label>
               <Select onValueChange={(value) => handleInputChange("deductible", value)}>
-                <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+                <SelectTrigger className="border-gray-300 focus:border-[#3CA7DD] focus:ring-[#3CA7DD]">
                   <SelectValue placeholder="Select deductible" />
                 </SelectTrigger>
                 <SelectContent>
@@ -366,7 +367,7 @@ const QuoteForm = () => {
             <div className="space-y-2">
               <Label htmlFor="coverageAmount" className="text-gray-700 font-medium">Coverage Amount</Label>
               <Select onValueChange={(value) => handleInputChange("coverageAmount", value)}>
-                <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+                <SelectTrigger className="border-gray-300 focus:border-[#3CA7DD] focus:ring-[#3CA7DD]">
                   <SelectValue placeholder="Select amount" />
                 </SelectTrigger>
                 <SelectContent>
@@ -384,9 +385,9 @@ const QuoteForm = () => {
   );
 
   const renderReview = () => (
-    <div className="space-y-6">
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border border-blue-200">
-        <h3 className="text-xl font-semibold text-blue-900 mb-6">Review Your Information</h3>
+    <div className="space-y-6 min-h-[400px]">
+      <div className="bg-gradient-to-r from-[#E8F4FD] to-[#F0F8FF] p-6 rounded-lg border border-[#3CA7DD]/30">
+        <h3 className="text-xl font-semibold text-[#2B89CC] mb-6">Review Your Information</h3>
         <div className="bg-white p-6 rounded-lg space-y-4 shadow-sm">
           <div className="grid md:grid-cols-2 gap-4">
             <div className="space-y-3">
@@ -490,14 +491,14 @@ const QuoteForm = () => {
       <div className="py-12">
         <div className="container mx-auto px-4 max-w-4xl">
           <Card className="shadow-xl border-0 overflow-hidden">
-            <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+            <CardHeader className="bg-gradient-to-r from-[#3CA7DD] to-[#2B89CC] text-white">
               <CardTitle className="text-2xl font-bold">{getInsuranceTitle(type || "")} Quote</CardTitle>
               <div className="mt-6">
                 <div className="flex justify-between text-sm mb-3">
                   <span className="font-medium">Step {currentStep} of {totalSteps}: {steps[currentStep - 1]}</span>
                   <span className="font-medium">{Math.round(progress)}% Complete</span>
                 </div>
-                <div className="w-full bg-blue-500/30 rounded-full h-3">
+                <div className="w-full bg-[#2B89CC]/30 rounded-full h-3">
                   <div 
                     className="bg-white h-3 rounded-full transition-all duration-300 ease-in-out"
                     style={{ width: `${progress}%` }}
@@ -519,7 +520,7 @@ const QuoteForm = () => {
                 </Button>
                 <Button
                   onClick={handleNext}
-                  className="flex items-center px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white shadow-lg"
+                  className="flex items-center px-8 py-3 bg-[#3CA7DD] hover:bg-[#2B89CC] text-white shadow-lg"
                 >
                   {currentStep === totalSteps ? "Generate Quote" : "Next"}
                   <ArrowRight className="w-4 h-4 ml-2" />
