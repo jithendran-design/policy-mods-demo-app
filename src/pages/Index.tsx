@@ -141,7 +141,7 @@ const Index = () => {
                   
                   {insurance.id === "health" && isSelected && (
                     <div className="mt-6 space-y-3">
-                      <div className="text-sm font-semibold text-gray-700 mb-2">Choose Your Flow:</div>
+                      <div className="text-sm font-semibold text-gray-700 mb-2">Choose Your Plan:</div>
                       <div className="grid grid-cols-2 gap-2">
                         <Button
                           onClick={(e) => {
