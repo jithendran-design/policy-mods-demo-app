@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -165,7 +164,7 @@ const QuoteForm = () => {
           <Label htmlFor="height">Height</Label>
           <Input
             id="height"
-            placeholder="5'8\""
+            placeholder="5'8&quot;"
             value={formData.height || ""}
             onChange={(e) => handleInputChange("height", e.target.value)}
           />
