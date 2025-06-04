@@ -75,8 +75,15 @@ const QuoteForm = () => {
     }));
   };
 
+  const shouldShowFamilyStep = () => {
+    return type === "health" && isDetailedFlow && formData.planType === "family";
+  };
+
   const handleNext = () => {
-    if (currentStep < totalSteps) {
+    // For detailed health flow, check if we should skip family step
+    if (type === "health" && isDetailedFlow && currentStep === 3 && !shouldShowFamilyStep()) {
+      setCurrentStep(5); // Skip to review step
+    } else if (currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
     } else {
       navigate("/proposal", { state: { formData, insuranceType: type } });
@@ -85,14 +92,15 @@ const QuoteForm = () => {
 
   const handlePrevious = () => {
     if (currentStep > 1) {
-      setCurrentStep(currentStep - 1);
+      // For detailed health flow, check if we need to skip back over family step
+      if (type === "health" && isDetailedFlow && currentStep === 5 && !shouldShowFamilyStep()) {
+        setCurrentStep(3); // Skip back to coverage preferences
+      } else {
+        setCurrentStep(currentStep - 1);
+      }
     } else {
       navigate("/");
     }
-  };
-
-  const shouldShowFamilyStep = () => {
-    return type === "health" && isDetailedFlow && formData.planType === "family";
   };
 
   const renderStepContent = () => {
@@ -150,15 +158,6 @@ const QuoteForm = () => {
     return isDetailedFlow ? "Next Step" : "Continue";
   };
 
-  const handleNextWithSkip = () => {
-    // Skip family step if individual plan is selected
-    if (type === "health" && isDetailedFlow && currentStep === 3 && !shouldShowFamilyStep()) {
-      setCurrentStep(5); // Skip to review step
-    } else {
-      handleNext();
-    }
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-purple-100">
       <Header />
@@ -208,7 +207,7 @@ const QuoteForm = () => {
                   {currentStep === 1 ? "Back to Home" : "Previous"}
                 </Button>
                 <Button
-                  onClick={handleNextWithSkip}
+                  onClick={handleNext}
                   data-testid="next-btn"
                   className="flex items-center px-8 py-3 bg-primary hover:bg-primary/90 text-white shadow-lg rounded-lg"
                 >

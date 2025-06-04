@@ -9,7 +9,7 @@ import { Plus, Trash2 } from "lucide-react";
 interface FamilyMember {
   id: string;
   name: string;
-  dateOfBirth: string;
+  age: string;
   relationship: string;
 }
 
@@ -27,7 +27,7 @@ export const FamilyMembersStep = ({ formData, onInputChange }: FamilyMembersStep
     const newMember: FamilyMember = {
       id: Date.now().toString(),
       name: "",
-      dateOfBirth: "",
+      age: "",
       relationship: ""
     };
     const updated = [...familyMembers, newMember];
@@ -104,14 +104,17 @@ export const FamilyMembersStep = ({ formData, onInputChange }: FamilyMembersStep
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor={`dob-${member.id}`} className="text-gray-700 font-medium">Date of Birth</Label>
+              <Label htmlFor={`age-${member.id}`} className="text-gray-700 font-medium">Age</Label>
               <Input
-                id={`dob-${member.id}`}
-                data-testid={`member-dob-${index}`}
-                type="date"
-                value={member.dateOfBirth}
-                onChange={(e) => updateFamilyMember(member.id, "dateOfBirth", e.target.value)}
+                id={`age-${member.id}`}
+                data-testid={`member-age-${index}`}
+                type="number"
+                placeholder="Enter age"
+                value={member.age}
+                onChange={(e) => updateFamilyMember(member.id, "age", e.target.value)}
                 className="border-gray-300 focus:border-primary focus:ring-primary rounded-lg bg-white"
+                min="0"
+                max="120"
               />
             </div>
             <div className="space-y-2">

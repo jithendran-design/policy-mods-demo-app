@@ -80,6 +80,22 @@ export const ReviewStep = ({ formData, insuranceType }: ReviewStepProps) => {
                 </div>
               </div>
             </div>
+            
+            {formData.familyMembers && formData.familyMembers.length > 0 && (
+              <div className="mt-4 pt-4 border-t border-gray-200">
+                <h5 className="font-semibold text-gray-800 mb-3">Family Members</h5>
+                <div className="space-y-2">
+                  {formData.familyMembers.map((member: any, index: number) => (
+                    <div key={member.id} className="flex justify-between">
+                      <span className="font-medium text-gray-700">{member.name}:</span>
+                      <span className="text-gray-900">
+                        {member.relationship}, Age {member.age}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>
