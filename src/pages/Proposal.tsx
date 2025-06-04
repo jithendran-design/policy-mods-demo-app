@@ -1,4 +1,3 @@
-
 import { useLocation, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -221,14 +220,14 @@ const Proposal = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-indigo-200">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-purple-100 to-purple-200">
       <Header />
       
       <div className="container mx-auto px-4 py-8 max-w-6xl">
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center mb-4">
-            <Shield className="h-8 w-8 text-[#3C71DD] mr-2" />
+            <Shield className="h-8 w-8 text-primary mr-2" />
             <h1 className="text-3xl font-bold text-gray-900">Insurance Proposal</h1>
           </div>
           <Badge className="bg-green-100 text-green-800 px-4 py-2">
@@ -241,7 +240,7 @@ const Proposal = () => {
           <div className="flex justify-between items-start">
             <div>
               <div className="flex items-center mb-2">
-                <Shield className="h-10 w-10 text-[#3C71DD] mr-3" />
+                <Shield className="h-10 w-10 text-primary mr-3" />
                 <div>
                   <h2 className="text-2xl font-bold text-gray-900">SecureGuard</h2>
                   <p className="text-gray-600">Financial Services</p>
@@ -262,16 +261,16 @@ const Proposal = () => {
           {/* Main Proposal */}
           <div className="lg:col-span-2">
             <Card className="shadow-xl">
-              <CardHeader className="bg-[#3C71DD] text-white">
+              <CardHeader className="bg-primary text-white">
                 <div className="flex justify-between items-start">
                   <div>
                     <CardTitle className="text-xl">Insurance Proposal Prepared Exclusively For:</CardTitle>
-                    <div className="mt-2 text-blue-100">
+                    <div className="mt-2 text-purple-100">
                       <div className="font-semibold">{formData.firstName} {formData.lastName}</div>
                       <div>{formData.address}</div>
                     </div>
                   </div>
-                  <div className="text-right text-blue-100">
+                  <div className="text-right text-purple-100">
                     <div className="font-semibold">Prepared By</div>
                     <div>{agentInfo.name}</div>
                     <div>{agentInfo.phone}</div>
@@ -335,7 +334,7 @@ const Proposal = () => {
                     <div className="space-y-2">
                       <div className="flex justify-between items-center">
                         <span className="font-semibold">Premium</span>
-                        <span className="font-bold text-xl text-[#3C71DD]">${monthlyPremium.toLocaleString()}.00</span>
+                        <span className="font-bold text-xl text-primary">${monthlyPremium.toLocaleString()}.00</span>
                       </div>
                       {insuranceType === "home" && (
                         <>
@@ -396,7 +395,7 @@ const Proposal = () => {
                 </Button>
                 <Button 
                   variant="outline" 
-                  className="w-full border-[#3C71DD] text-[#3C71DD] hover:bg-[#3C71DD] hover:text-white"
+                  className="w-full border-primary text-primary hover:bg-primary hover:text-white"
                   onClick={handleDownload}
                 >
                   <Download className="w-4 h-4 mr-2" />
@@ -404,7 +403,7 @@ const Proposal = () => {
                 </Button>
                 <Button 
                   variant="outline" 
-                  className="w-full border-[#3C71DD] text-[#3C71DD] hover:bg-[#3C71DD] hover:text-white"
+                  className="w-full border-primary text-primary hover:bg-primary hover:text-white"
                   onClick={handleEmailProposal}
                 >
                   <Mail className="w-4 h-4 mr-2" />
@@ -412,7 +411,7 @@ const Proposal = () => {
                 </Button>
                 <Button 
                   variant="outline" 
-                  className="w-full border-[#3C71DD] text-[#3C71DD] hover:bg-[#3C71DD] hover:text-white"
+                  className="w-full border-primary text-primary hover:bg-primary hover:text-white"
                   onClick={() => navigate("/")}
                 >
                   Get Another Quote
@@ -427,7 +426,7 @@ const Proposal = () => {
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="text-center mb-4">
-                  <div className="w-16 h-16 bg-[#3C71DD] rounded-full flex items-center justify-center mx-auto mb-2">
+                  <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-2">
                     <span className="text-white font-bold text-xl">SM</span>
                   </div>
                   <div className="font-semibold">{agentInfo.name}</div>
@@ -436,15 +435,15 @@ const Proposal = () => {
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center">
-                    <Phone className="w-4 h-4 mr-2 text-[#3C71DD]" />
+                    <Phone className="w-4 h-4 mr-2 text-primary" />
                     <span className="text-sm">{agentInfo.phone}</span>
                   </div>
                   <div className="flex items-center">
-                    <Mail className="w-4 h-4 mr-2 text-[#3C71DD]" />
+                    <Mail className="w-4 h-4 mr-2 text-primary" />
                     <span className="text-sm">{agentInfo.email}</span>
                   </div>
                   <div className="flex items-center">
-                    <MapPin className="w-4 h-4 mr-2 text-[#3C71DD]" />
+                    <MapPin className="w-4 h-4 mr-2 text-primary" />
                     <span className="text-sm">Dallas, TX Office</span>
                   </div>
                 </div>
@@ -455,7 +454,7 @@ const Proposal = () => {
             </Card>
 
             {/* Benefits */}
-            <Card className="bg-gradient-to-br from-[#3C71DD] to-[#4F7FE6] text-white">
+            <Card className="bg-gradient-to-br from-primary to-purple-700 text-white">
               <CardHeader>
                 <CardTitle className="text-lg">Why SecureGuard?</CardTitle>
               </CardHeader>
