@@ -71,10 +71,10 @@ const Index = () => {
             return (
               <Card 
                 key={insurance.id}
-                className="hover:shadow-lg transition-all duration-300 cursor-pointer group hover:scale-105"
+                className="hover:shadow-lg transition-all duration-300 cursor-pointer group hover:scale-105 flex flex-col h-full"
                 onClick={() => handleInsuranceSelect(insurance.id)}
               >
-                <CardHeader className="text-center">
+                <CardHeader className="text-center flex-grow">
                   <div className={`${insurance.color} w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform`}>
                     <IconComponent className="h-8 w-8 text-white" />
                   </div>
@@ -83,7 +83,7 @@ const Index = () => {
                     {insurance.description}
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="mt-auto">
                   <Button className="w-full bg-blue-600 hover:bg-blue-700">
                     Get Quote
                   </Button>
