@@ -80,11 +80,19 @@ const QuoteForm = () => {
   };
 
   const handleNext = () => {
-    // For detailed health flow, check if we should skip family step
-    if (type === "health" && isDetailedFlow && currentStep === 3 && !shouldShowFamilyStep()) {
-      setCurrentStep(5); // Skip to review step
-    } else if (currentStep < totalSteps) {
-      setCurrentStep(currentStep + 1);
+    console.log('Current step:', currentStep, 'Plan type:', formData.planType, 'Should show family:', shouldShowFamilyStep());
+    
+    if (currentStep < totalSteps) {
+      // For detailed health flow, check if we should skip family step after step 3
+      if (type === "health" && isDetailedFlow && currentStep === 3) {
+        if (shouldShowFamilyStep()) {
+          setCurrentStep(4); // Go to family members step
+        } else {
+          setCurrentStep(5); // Skip to review step
+        }
+      } else {
+        setCurrentStep(currentStep + 1);
+      }
     } else {
       navigate("/proposal", { state: { formData, insuranceType: type } });
     }
@@ -104,6 +112,8 @@ const QuoteForm = () => {
   };
 
   const renderStepContent = () => {
+    console.log('Rendering step:', currentStep, 'Type:', type, 'Detailed flow:', isDetailedFlow);
+    
     if (currentStep === 1) {
       return <PersonalInformationStep formData={formData} onInputChange={handleInputChange} />;
     }
@@ -155,7 +165,7 @@ const QuoteForm = () => {
     if (type === "health" && isDetailedFlow && currentStep === 3 && !shouldShowFamilyStep()) {
       return "Skip to Review";
     }
-    return isDetailedFlow ? "Next Step" : "Continue";
+    return "Continue";
   };
 
   return (
@@ -170,7 +180,7 @@ const QuoteForm = () => {
                 {getInsuranceTitle(type || "")} Quote
                 {type === "health" && flowType && (
                   <span className="text-sm font-normal ml-2 opacity-90" data-testid="flow-indicator">
-                    ({flowType === "detailed" ? "Family" : "Self"} Flow)
+                    ({flowType === "detailed" ? "Family" : "Self"})
                   </span>
                 )}
               </CardTitle>
