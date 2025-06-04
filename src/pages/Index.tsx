@@ -17,7 +17,7 @@ const Index = () => {
       title: "Auto Insurance",
       description: "Protect your vehicle with comprehensive coverage",
       icon: Car,
-      color: "bg-[#3C71DD]",
+      color: "bg-primary",
       startingPrice: "$89",
       coverage: "Up to $1M coverage"
     },
@@ -26,7 +26,7 @@ const Index = () => {
       title: "Home Insurance", 
       description: "Secure your home and belongings",
       icon: Home,
-      color: "bg-[#4F7FE6]",
+      color: "bg-primary/90",
       startingPrice: "$156",
       coverage: "Up to $2M coverage"
     },
@@ -35,7 +35,7 @@ const Index = () => {
       title: "Health Insurance",
       description: "Comprehensive health coverage for you and your family",
       icon: Heart,
-      color: "bg-[#628DEF]",
+      color: "bg-primary/80",
       startingPrice: "$299",
       coverage: "Individual & Family plans"
     },
@@ -44,7 +44,7 @@ const Index = () => {
       title: "Life Insurance",
       description: "Financial protection for your loved ones",
       icon: Shield,
-      color: "bg-[#759BF8]",
+      color: "bg-primary/70",
       startingPrice: "$45",
       coverage: "Up to $5M coverage"
     },
@@ -53,7 +53,7 @@ const Index = () => {
       title: "Business Insurance",
       description: "Protect your business operations and assets",
       icon: Briefcase,
-      color: "bg-[#88A9FF]",
+      color: "bg-primary/60",
       startingPrice: "$199",
       coverage: "Comprehensive business protection"
     }
@@ -92,8 +92,8 @@ const Index = () => {
                 key={insurance.id}
                 className={`cursor-pointer transition-all duration-300 border-2 ${
                   isSelected 
-                    ? 'border-[#3C71DD] bg-blue-50 shadow-lg' 
-                    : 'border-gray-200 hover:border-[#3C71DD]/40 hover:shadow-md'
+                    ? 'border-primary bg-blue-50 shadow-lg' 
+                    : 'border-gray-200 hover:border-primary/40 hover:shadow-md'
                 }`}
                 onClick={() => handleInsuranceSelect(insurance.id)}
               >
@@ -109,7 +109,7 @@ const Index = () => {
                     </div>
                     <div className={`w-5 h-5 rounded-full border-2 ${
                       isSelected 
-                        ? 'border-[#3C71DD] bg-[#3C71DD]' 
+                        ? 'border-primary bg-primary' 
                         : 'border-gray-300'
                     } flex items-center justify-center`}>
                       {isSelected && (
@@ -132,7 +132,7 @@ const Index = () => {
                     </div>
                   </div>
                   <div className="mt-4">
-                    <button className="text-[#3C71DD] text-sm font-medium flex items-center hover:text-[#2F5FC7] transition-colors">
+                    <button className="text-primary text-sm font-medium flex items-center hover:text-primary/80 transition-colors">
                       Compare plans <ArrowRight className="h-4 w-4 ml-1" />
                     </button>
                   </div>
@@ -146,33 +146,33 @@ const Index = () => {
         <div className="text-center mb-16">
           <Button 
             onClick={handleGetQuote}
-            className="bg-[#3C71DD] hover:bg-[#2F5FC7] text-white font-medium py-3 px-8 text-lg rounded-lg transition-colors duration-200"
+            className="bg-primary hover:bg-primary/90 text-white font-medium py-3 px-8 text-lg rounded-lg transition-colors duration-200"
           >
             Get Quote for {insuranceTypes.find(i => i.id === selectedInsurance)?.title}
           </Button>
         </div>
 
         {/* Features Section */}
-        <div className="mt-16 bg-white rounded-xl shadow-xl p-8 border border-[#3C71DD]/10">
+        <div className="mt-16 bg-white rounded-xl shadow-xl p-8 border border-primary/10">
           <h2 className="text-2xl font-bold text-center mb-8 text-gray-800">Why Choose SecureGuard?</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="bg-[#3C71DD]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Shield className="h-8 w-8 text-[#3C71DD]" />
+              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Shield className="h-8 w-8 text-primary" />
               </div>
               <h3 className="font-semibold mb-2 text-gray-800">Comprehensive Coverage</h3>
               <p className="text-gray-600">Tailored policies to meet your specific needs</p>
             </div>
             <div className="text-center">
-              <div className="bg-[#4F7FE6]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-[#4F7FE6] font-bold text-lg">24/7</span>
+              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-primary font-bold text-lg">24/7</span>
               </div>
               <h3 className="font-semibold mb-2 text-gray-800">24/7 Support</h3>
               <p className="text-gray-600">Round-the-clock customer service</p>
             </div>
             <div className="text-center">
-              <div className="bg-[#628DEF]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-[#628DEF] font-bold text-xl">$</span>
+              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-primary font-bold text-xl">$</span>
               </div>
               <h3 className="font-semibold mb-2 text-gray-800">Competitive Rates</h3>
               <p className="text-gray-600">Best value for your money</p>
