@@ -149,7 +149,7 @@ const Index = () => {
         <div className="text-center mb-16">
           <Button 
             onClick={handleGetQuote}
-            className="bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-500 text-white font-semibold py-4 px-10 text-lg rounded-2xl transition-all duration-200 shadow-xl hover:shadow-2xl hover:scale-105 transform"
+            className="bg-primary hover:bg-primary/90 text-white shadow-lg rounded-lg"
           >
             Get Quote for {insuranceTypes.find(i => i.id === selectedInsurance)?.title}
           </Button>
