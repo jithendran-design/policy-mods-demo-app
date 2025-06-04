@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -154,7 +153,7 @@ const Index = () => {
                           size="sm"
                           className="text-xs px-3 py-2 border-primary text-primary hover:bg-primary hover:text-white"
                         >
-                          Self Flow
+                          For Self
                         </Button>
                         <Button
                           onClick={(e) => {
@@ -166,7 +165,7 @@ const Index = () => {
                           size="sm"
                           className="text-xs px-3 py-2 border-primary text-primary hover:bg-primary hover:text-white"
                         >
-                          Family Flow
+                          For Family
                         </Button>
                       </div>
                     </div>

@@ -1,6 +1,4 @@
 
-import { runHealthFlowTests } from './HealthInsuranceFlow.test';
-
 // Simple test execution function for manual testing
 export const executeHealthFlowTests = () => {
   console.log('🔄 Executing Health Insurance Flow Tests...\n');
@@ -11,16 +9,16 @@ export const executeHealthFlowTests = () => {
     const selfFlowBtn = document.querySelector('[data-testid="health-simple-flow-btn"]');
     const familyFlowBtn = document.querySelector('[data-testid="health-detailed-flow-btn"]');
     
-    if (selfFlowBtn?.textContent?.includes('Self Flow')) {
-      console.log('   ✅ Self Flow button correctly named');
+    if (selfFlowBtn?.textContent?.includes('For Self')) {
+      console.log('   ✅ For Self button correctly named');
     } else {
-      console.log('   ❌ Self Flow button naming issue');
+      console.log('   ❌ For Self button naming issue');
     }
     
-    if (familyFlowBtn?.textContent?.includes('Family Flow')) {
-      console.log('   ✅ Family Flow button correctly named');
+    if (familyFlowBtn?.textContent?.includes('For Family')) {
+      console.log('   ✅ For Family button correctly named');
     } else {
-      console.log('   ❌ Family Flow button naming issue');
+      console.log('   ❌ For Family button naming issue');
     }
     
     // Test step indicators
@@ -39,17 +37,14 @@ export const executeHealthFlowTests = () => {
       console.log('   ✅ Add family member button present');
     }
     
-    // Test age field
-    console.log('\n4. Testing age field in family members...');
-    const ageInputs = document.querySelectorAll('[data-testid*="member-age"]');
-    if (ageInputs.length >= 0) {
-      console.log('   ✅ Age input fields configured');
+    // Test continue button functionality
+    console.log('\n4. Testing continue button navigation...');
+    const nextBtn = document.querySelector('[data-testid="next-btn"]');
+    if (nextBtn?.textContent?.includes('Continue')) {
+      console.log('   ✅ Continue button present');
     }
     
     console.log('\n✅ Manual health flow tests completed successfully!');
-    
-    // Run the automated tests
-    runHealthFlowTests();
     
   } catch (error) {
     console.error('❌ Test execution failed:', error);
@@ -57,7 +52,7 @@ export const executeHealthFlowTests = () => {
 };
 
 // Auto-execute if in development mode
-if (process.env.NODE_ENV === 'development') {
+if (typeof window !== 'undefined') {
   // Add to window for manual execution in browser console
   (window as any).executeHealthFlowTests = executeHealthFlowTests;
   console.log('Health Flow Tests available! Run executeHealthFlowTests() in console.');

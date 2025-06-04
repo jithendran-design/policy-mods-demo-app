@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -80,10 +79,7 @@ const QuoteForm = () => {
   };
 
   const handleNext = () => {
-    // For detailed health flow, check if we should skip family step
-    if (type === "health" && isDetailedFlow && currentStep === 3 && !shouldShowFamilyStep()) {
-      setCurrentStep(5); // Skip to review step
-    } else if (currentStep < totalSteps) {
+    if (currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
     } else {
       navigate("/proposal", { state: { formData, insuranceType: type } });
@@ -92,12 +88,7 @@ const QuoteForm = () => {
 
   const handlePrevious = () => {
     if (currentStep > 1) {
-      // For detailed health flow, check if we need to skip back over family step
-      if (type === "health" && isDetailedFlow && currentStep === 5 && !shouldShowFamilyStep()) {
-        setCurrentStep(3); // Skip back to coverage preferences
-      } else {
-        setCurrentStep(currentStep - 1);
-      }
+      setCurrentStep(currentStep - 1);
     } else {
       navigate("/");
     }
@@ -152,10 +143,7 @@ const QuoteForm = () => {
     if (currentStep === totalSteps) {
       return "Generate Quote";
     }
-    if (type === "health" && isDetailedFlow && currentStep === 3 && !shouldShowFamilyStep()) {
-      return "Skip to Review";
-    }
-    return isDetailedFlow ? "Next Step" : "Continue";
+    return "Continue";
   };
 
   return (
@@ -170,7 +158,7 @@ const QuoteForm = () => {
                 {getInsuranceTitle(type || "")} Quote
                 {type === "health" && flowType && (
                   <span className="text-sm font-normal ml-2 opacity-90" data-testid="flow-indicator">
-                    ({flowType === "detailed" ? "Family" : "Self"} Flow)
+                    ({flowType === "detailed" ? "For Family" : "For Self"})
                   </span>
                 )}
               </CardTitle>
