@@ -16,35 +16,35 @@ const Index = () => {
       title: "Auto Insurance",
       description: "Protect your vehicle with comprehensive coverage",
       icon: Car,
-      color: "bg-blue-500"
+      color: "bg-[#3CA7DD]"
     },
     {
       id: "home",
       title: "Home Insurance", 
       description: "Secure your home and belongings",
       icon: Home,
-      color: "bg-green-500"
+      color: "bg-[#4FB3E1]"
     },
     {
       id: "health",
       title: "Health Insurance",
       description: "Comprehensive health coverage for you and your family",
       icon: Heart,
-      color: "bg-red-500"
+      color: "bg-[#62BFE5]"
     },
     {
       id: "life",
       title: "Life Insurance",
       description: "Financial protection for your loved ones",
       icon: Shield,
-      color: "bg-purple-500"
+      color: "bg-[#75CBE9]"
     },
     {
       id: "business",
       title: "Business Insurance",
       description: "Protect your business operations and assets",
       icon: Briefcase,
-      color: "bg-orange-500"
+      color: "bg-[#88D7ED]"
     }
   ];
 
@@ -53,7 +53,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-[#E8F4FD] to-[#D1E9FB]">
       <Header />
       
       <div className="container mx-auto px-4 py-12">
@@ -74,20 +74,20 @@ const Index = () => {
             return (
               <Card 
                 key={insurance.id}
-                className="hover:shadow-lg transition-all duration-300 cursor-pointer group hover:scale-105 flex flex-col h-full"
+                className="hover:shadow-xl transition-all duration-300 cursor-pointer group hover:scale-105 flex flex-col h-full border-[#3CA7DD]/20 hover:border-[#3CA7DD]/40"
                 onClick={() => handleInsuranceSelect(insurance.id)}
               >
                 <CardHeader className="text-center flex-grow">
-                  <div className={`${insurance.color} w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform`}>
+                  <div className={`${insurance.color} w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-lg`}>
                     <IconComponent className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-xl">{insurance.title}</CardTitle>
+                  <CardTitle className="text-xl text-gray-800">{insurance.title}</CardTitle>
                   <CardDescription className="text-gray-600">
                     {insurance.description}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="mt-auto">
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                  <Button className="w-full bg-[#3CA7DD] hover:bg-[#2E8BC7] text-white font-medium py-2.5 rounded-lg transition-colors duration-200">
                     Get Quote
                   </Button>
                 </CardContent>
@@ -97,28 +97,28 @@ const Index = () => {
         </div>
 
         {/* Features Section */}
-        <div className="mt-16 bg-white rounded-lg shadow-lg p-8">
-          <h2 className="text-2xl font-bold text-center mb-8">Why Choose SecureGuard?</h2>
+        <div className="mt-16 bg-white rounded-xl shadow-xl p-8 border border-[#3CA7DD]/10">
+          <h2 className="text-2xl font-bold text-center mb-8 text-gray-800">Why Choose SecureGuard?</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Shield className="h-6 w-6 text-blue-600" />
+              <div className="bg-[#3CA7DD]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Shield className="h-8 w-8 text-[#3CA7DD]" />
               </div>
-              <h3 className="font-semibold mb-2">Comprehensive Coverage</h3>
+              <h3 className="font-semibold mb-2 text-gray-800">Comprehensive Coverage</h3>
               <p className="text-gray-600">Tailored policies to meet your specific needs</p>
             </div>
             <div className="text-center">
-              <div className="bg-green-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-green-600 font-bold">24/7</span>
+              <div className="bg-[#4FB3E1]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-[#4FB3E1] font-bold text-lg">24/7</span>
               </div>
-              <h3 className="font-semibold mb-2">24/7 Support</h3>
+              <h3 className="font-semibold mb-2 text-gray-800">24/7 Support</h3>
               <p className="text-gray-600">Round-the-clock customer service</p>
             </div>
             <div className="text-center">
-              <div className="bg-purple-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-purple-600 font-bold">$</span>
+              <div className="bg-[#62BFE5]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-[#62BFE5] font-bold text-xl">$</span>
               </div>
-              <h3 className="font-semibold mb-2">Competitive Rates</h3>
+              <h3 className="font-semibold mb-2 text-gray-800">Competitive Rates</h3>
               <p className="text-gray-600">Best value for your money</p>
             </div>
           </div>
