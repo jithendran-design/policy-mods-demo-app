@@ -8,6 +8,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Progress } from "@/components/ui/progress";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const QuoteForm = () => {
   const { type } = useParams();
@@ -76,73 +78,79 @@ const QuoteForm = () => {
 
   const renderPersonalInformation = () => (
     <div className="space-y-6">
-      <div className="grid md:grid-cols-2 gap-4">
-        <div>
-          <Label htmlFor="firstName">First Name</Label>
+      <div className="grid md:grid-cols-2 gap-6">
+        <div className="space-y-2">
+          <Label htmlFor="firstName" className="text-gray-700 font-medium">First Name</Label>
           <Input
             id="firstName"
             placeholder="John"
             value={formData.firstName || ""}
             onChange={(e) => handleInputChange("firstName", e.target.value)}
+            className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
           />
         </div>
-        <div>
-          <Label htmlFor="lastName">Last Name</Label>
+        <div className="space-y-2">
+          <Label htmlFor="lastName" className="text-gray-700 font-medium">Last Name</Label>
           <Input
             id="lastName"
             placeholder="Doe"
             value={formData.lastName || ""}
             onChange={(e) => handleInputChange("lastName", e.target.value)}
+            className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
           />
         </div>
       </div>
       
-      <div className="grid md:grid-cols-2 gap-4">
-        <div>
-          <Label htmlFor="email">Email</Label>
+      <div className="grid md:grid-cols-2 gap-6">
+        <div className="space-y-2">
+          <Label htmlFor="email" className="text-gray-700 font-medium">Email</Label>
           <Input
             id="email"
             type="email"
             placeholder="john.doe@email.com"
             value={formData.email || ""}
             onChange={(e) => handleInputChange("email", e.target.value)}
+            className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
           />
         </div>
-        <div>
-          <Label htmlFor="phone">Phone Number</Label>
+        <div className="space-y-2">
+          <Label htmlFor="phone" className="text-gray-700 font-medium">Phone Number</Label>
           <Input
             id="phone"
             placeholder="(555) 123-4567"
             value={formData.phone || ""}
             onChange={(e) => handleInputChange("phone", e.target.value)}
+            className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
           />
         </div>
       </div>
 
-      <div>
-        <Label htmlFor="address">Address</Label>
+      <div className="space-y-2">
+        <Label htmlFor="address" className="text-gray-700 font-medium">Address</Label>
         <Input
           id="address"
           placeholder="123 Main St, City, State 12345"
           value={formData.address || ""}
           onChange={(e) => handleInputChange("address", e.target.value)}
+          className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
         />
       </div>
 
-      <div className="grid md:grid-cols-2 gap-4">
-        <div>
-          <Label htmlFor="dateOfBirth">Date of Birth</Label>
+      <div className="grid md:grid-cols-2 gap-6">
+        <div className="space-y-2">
+          <Label htmlFor="dateOfBirth" className="text-gray-700 font-medium">Date of Birth</Label>
           <Input
             id="dateOfBirth"
             type="date"
             value={formData.dateOfBirth || ""}
             onChange={(e) => handleInputChange("dateOfBirth", e.target.value)}
+            className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
           />
         </div>
-        <div>
-          <Label htmlFor="gender">Gender</Label>
+        <div className="space-y-2">
+          <Label htmlFor="gender" className="text-gray-700 font-medium">Gender</Label>
           <Select onValueChange={(value) => handleInputChange("gender", value)}>
-            <SelectTrigger>
+            <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
               <SelectValue placeholder="Select gender" />
             </SelectTrigger>
             <SelectContent>
@@ -157,86 +165,93 @@ const QuoteForm = () => {
   );
 
   const renderHealthAndCoverage = () => (
-    <div className="space-y-6">
-      <h3 className="text-lg font-semibold">Health Information</h3>
-      <div className="grid md:grid-cols-2 gap-4">
-        <div>
-          <Label htmlFor="height">Height</Label>
-          <Input
-            id="height"
-            placeholder="5'8&quot;"
-            value={formData.height || ""}
-            onChange={(e) => handleInputChange("height", e.target.value)}
-          />
+    <div className="space-y-8">
+      <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
+        <h3 className="text-xl font-semibold text-blue-900 mb-6">Health Information</h3>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="space-y-2">
+            <Label htmlFor="height" className="text-gray-700 font-medium">Height</Label>
+            <Input
+              id="height"
+              placeholder="5'8&quot;"
+              value={formData.height || ""}
+              onChange={(e) => handleInputChange("height", e.target.value)}
+              className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="weight" className="text-gray-700 font-medium">Weight</Label>
+            <Input
+              id="weight"
+              placeholder="150 lbs"
+              value={formData.weight || ""}
+              onChange={(e) => handleInputChange("weight", e.target.value)}
+              className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+            />
+          </div>
         </div>
-        <div>
-          <Label htmlFor="weight">Weight</Label>
-          <Input
-            id="weight"
-            placeholder="150 lbs"
-            value={formData.weight || ""}
-            onChange={(e) => handleInputChange("weight", e.target.value)}
-          />
+
+        <div className="grid md:grid-cols-2 gap-6 mt-6">
+          <div className="space-y-2">
+            <Label htmlFor="smokingStatus" className="text-gray-700 font-medium">Smoking Status</Label>
+            <Select onValueChange={(value) => handleInputChange("smokingStatus", value)}>
+              <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+                <SelectValue placeholder="Select smoking status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="never">Never smoked</SelectItem>
+                <SelectItem value="former">Former smoker</SelectItem>
+                <SelectItem value="current">Current smoker</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="medicalConditions" className="text-gray-700 font-medium">Pre-existing Medical Conditions</Label>
+            <Select onValueChange={(value) => handleInputChange("medicalConditions", value)}>
+              <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+                <SelectValue placeholder="Select if applicable" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="none">None</SelectItem>
+                <SelectItem value="diabetes">Diabetes</SelectItem>
+                <SelectItem value="heart">Heart condition</SelectItem>
+                <SelectItem value="other">Other (please specify)</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
       </div>
 
-      <div>
-        <Label htmlFor="smokingStatus">Smoking Status</Label>
-        <Select onValueChange={(value) => handleInputChange("smokingStatus", value)}>
-          <SelectTrigger>
-            <SelectValue placeholder="Select smoking status" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="never">Never smoked</SelectItem>
-            <SelectItem value="former">Former smoker</SelectItem>
-            <SelectItem value="current">Current smoker</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-
-      <div>
-        <Label htmlFor="medicalConditions">Pre-existing Medical Conditions</Label>
-        <Select onValueChange={(value) => handleInputChange("medicalConditions", value)}>
-          <SelectTrigger>
-            <SelectValue placeholder="Select if applicable" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="none">None</SelectItem>
-            <SelectItem value="diabetes">Diabetes</SelectItem>
-            <SelectItem value="heart">Heart condition</SelectItem>
-            <SelectItem value="other">Other (please specify)</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-
-      <h3 className="text-lg font-semibold mt-8">Coverage Preferences</h3>
-      <div className="grid md:grid-cols-2 gap-4">
-        <div>
-          <Label htmlFor="coverageLevel">Coverage Level</Label>
-          <Select onValueChange={(value) => handleInputChange("coverageLevel", value)}>
-            <SelectTrigger>
-              <SelectValue placeholder="Select coverage level" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="basic">Basic Coverage</SelectItem>
-              <SelectItem value="standard">Standard Coverage</SelectItem>
-              <SelectItem value="premium">Premium Coverage</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        <div>
-          <Label htmlFor="deductible">Deductible</Label>
-          <Select onValueChange={(value) => handleInputChange("deductible", value)}>
-            <SelectTrigger>
-              <SelectValue placeholder="Select deductible" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="250">$250</SelectItem>
-              <SelectItem value="500">$500</SelectItem>
-              <SelectItem value="1000">$1,000</SelectItem>
-              <SelectItem value="2500">$2,500</SelectItem>
-            </SelectContent>
-          </Select>
+      <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
+        <h3 className="text-xl font-semibold text-gray-900 mb-6">Coverage Preferences</h3>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="space-y-2">
+            <Label htmlFor="coverageLevel" className="text-gray-700 font-medium">Coverage Level</Label>
+            <Select onValueChange={(value) => handleInputChange("coverageLevel", value)}>
+              <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+                <SelectValue placeholder="Select coverage level" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="basic">Basic Coverage</SelectItem>
+                <SelectItem value="standard">Standard Coverage</SelectItem>
+                <SelectItem value="premium">Premium Coverage</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="deductible" className="text-gray-700 font-medium">Deductible</Label>
+            <Select onValueChange={(value) => handleInputChange("deductible", value)}>
+              <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+                <SelectValue placeholder="Select deductible" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="250">$250</SelectItem>
+                <SelectItem value="500">$500</SelectItem>
+                <SelectItem value="1000">$1,000</SelectItem>
+                <SelectItem value="2500">$2,500</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
       </div>
     </div>
@@ -244,114 +259,125 @@ const QuoteForm = () => {
 
   const renderAutoDetails = () => (
     <div className="space-y-6">
-      <div className="grid md:grid-cols-2 gap-4">
-        <div>
-          <Label htmlFor="vehicleYear">Vehicle Year</Label>
-          <Select onValueChange={(value) => handleInputChange("vehicleYear", value)}>
-            <SelectTrigger>
-              <SelectValue placeholder="Select year" />
+      <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
+        <h3 className="text-xl font-semibold text-blue-900 mb-6">Vehicle Information</h3>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="space-y-2">
+            <Label htmlFor="vehicleYear" className="text-gray-700 font-medium">Vehicle Year</Label>
+            <Select onValueChange={(value) => handleInputChange("vehicleYear", value)}>
+              <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+                <SelectValue placeholder="Select year" />
+              </SelectTrigger>
+              <SelectContent>
+                {Array.from({ length: 25 }, (_, i) => 2024 - i).map(year => (
+                  <SelectItem key={year} value={year.toString()}>{year}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="vehicleMake" className="text-gray-700 font-medium">Make</Label>
+            <Input
+              id="vehicleMake"
+              placeholder="Toyota"
+              value={formData.vehicleMake || ""}
+              onChange={(e) => handleInputChange("vehicleMake", e.target.value)}
+              className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+            />
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6 mt-6">
+          <div className="space-y-2">
+            <Label htmlFor="vehicleModel" className="text-gray-700 font-medium">Model</Label>
+            <Input
+              id="vehicleModel"
+              placeholder="Camry"
+              value={formData.vehicleModel || ""}
+              onChange={(e) => handleInputChange("vehicleModel", e.target.value)}
+              className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="vin" className="text-gray-700 font-medium">VIN</Label>
+            <Input
+              id="vin"
+              placeholder="1HGBH41JXMN109186"
+              value={formData.vin || ""}
+              onChange={(e) => handleInputChange("vin", e.target.value)}
+              className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+            />
+          </div>
+        </div>
+
+        <div className="mt-6 space-y-2">
+          <Label htmlFor="annualMileage" className="text-gray-700 font-medium">Annual Mileage</Label>
+          <Select onValueChange={(value) => handleInputChange("annualMileage", value)}>
+            <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+              <SelectValue placeholder="Select annual mileage" />
             </SelectTrigger>
             <SelectContent>
-              {Array.from({ length: 25 }, (_, i) => 2024 - i).map(year => (
-                <SelectItem key={year} value={year.toString()}>{year}</SelectItem>
-              ))}
+              <SelectItem value="5000">Less than 5,000 miles</SelectItem>
+              <SelectItem value="10000">5,000 - 10,000 miles</SelectItem>
+              <SelectItem value="15000">10,000 - 15,000 miles</SelectItem>
+              <SelectItem value="20000">15,000 - 20,000 miles</SelectItem>
+              <SelectItem value="25000">More than 20,000 miles</SelectItem>
             </SelectContent>
           </Select>
         </div>
-        <div>
-          <Label htmlFor="vehicleMake">Make</Label>
-          <Input
-            id="vehicleMake"
-            placeholder="Toyota"
-            value={formData.vehicleMake || ""}
-            onChange={(e) => handleInputChange("vehicleMake", e.target.value)}
-          />
-        </div>
-      </div>
-
-      <div className="grid md:grid-cols-2 gap-4">
-        <div>
-          <Label htmlFor="vehicleModel">Model</Label>
-          <Input
-            id="vehicleModel"
-            placeholder="Camry"
-            value={formData.vehicleModel || ""}
-            onChange={(e) => handleInputChange("vehicleModel", e.target.value)}
-          />
-        </div>
-        <div>
-          <Label htmlFor="vin">VIN</Label>
-          <Input
-            id="vin"
-            placeholder="1HGBH41JXMN109186"
-            value={formData.vin || ""}
-            onChange={(e) => handleInputChange("vin", e.target.value)}
-          />
-        </div>
-      </div>
-
-      <div>
-        <Label htmlFor="annualMileage">Annual Mileage</Label>
-        <Select onValueChange={(value) => handleInputChange("annualMileage", value)}>
-          <SelectTrigger>
-            <SelectValue placeholder="Select annual mileage" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="5000">Less than 5,000 miles</SelectItem>
-            <SelectItem value="10000">5,000 - 10,000 miles</SelectItem>
-            <SelectItem value="15000">10,000 - 15,000 miles</SelectItem>
-            <SelectItem value="20000">15,000 - 20,000 miles</SelectItem>
-            <SelectItem value="25000">More than 20,000 miles</SelectItem>
-          </SelectContent>
-        </Select>
       </div>
     </div>
   );
 
   const renderCoverageOptions = () => (
     <div className="space-y-6">
-      <div>
-        <Label htmlFor="coverageLevel">Coverage Level</Label>
-        <Select onValueChange={(value) => handleInputChange("coverageLevel", value)}>
-          <SelectTrigger>
-            <SelectValue placeholder="Select coverage level" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="basic">Basic Coverage</SelectItem>
-            <SelectItem value="standard">Standard Coverage</SelectItem>
-            <SelectItem value="premium">Premium Coverage</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
+      <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
+        <h3 className="text-xl font-semibold text-gray-900 mb-6">Coverage Options</h3>
+        <div className="space-y-6">
+          <div className="space-y-2">
+            <Label htmlFor="coverageLevel" className="text-gray-700 font-medium">Coverage Level</Label>
+            <Select onValueChange={(value) => handleInputChange("coverageLevel", value)}>
+              <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+                <SelectValue placeholder="Select coverage level" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="basic">Basic Coverage</SelectItem>
+                <SelectItem value="standard">Standard Coverage</SelectItem>
+                <SelectItem value="premium">Premium Coverage</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
 
-      <div className="grid md:grid-cols-2 gap-4">
-        <div>
-          <Label htmlFor="deductible">Deductible</Label>
-          <Select onValueChange={(value) => handleInputChange("deductible", value)}>
-            <SelectTrigger>
-              <SelectValue placeholder="Select deductible" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="250">$250</SelectItem>
-              <SelectItem value="500">$500</SelectItem>
-              <SelectItem value="1000">$1,000</SelectItem>
-              <SelectItem value="2500">$2,500</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        <div>
-          <Label htmlFor="coverageAmount">Coverage Amount</Label>
-          <Select onValueChange={(value) => handleInputChange("coverageAmount", value)}>
-            <SelectTrigger>
-              <SelectValue placeholder="Select amount" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="50000">$50,000</SelectItem>
-              <SelectItem value="100000">$100,000</SelectItem>
-              <SelectItem value="250000">$250,000</SelectItem>
-              <SelectItem value="500000">$500,000</SelectItem>
-            </SelectContent>
-          </Select>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <Label htmlFor="deductible" className="text-gray-700 font-medium">Deductible</Label>
+              <Select onValueChange={(value) => handleInputChange("deductible", value)}>
+                <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+                  <SelectValue placeholder="Select deductible" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="250">$250</SelectItem>
+                  <SelectItem value="500">$500</SelectItem>
+                  <SelectItem value="1000">$1,000</SelectItem>
+                  <SelectItem value="2500">$2,500</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="coverageAmount" className="text-gray-700 font-medium">Coverage Amount</Label>
+              <Select onValueChange={(value) => handleInputChange("coverageAmount", value)}>
+                <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+                  <SelectValue placeholder="Select amount" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="50000">$50,000</SelectItem>
+                  <SelectItem value="100000">$100,000</SelectItem>
+                  <SelectItem value="250000">$250,000</SelectItem>
+                  <SelectItem value="500000">$500,000</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -359,28 +385,84 @@ const QuoteForm = () => {
 
   const renderReview = () => (
     <div className="space-y-6">
-      <h3 className="text-lg font-semibold">Review Your Information</h3>
-      <div className="bg-gray-50 p-4 rounded-lg space-y-3">
-        <div><strong>Name:</strong> {formData.firstName} {formData.lastName}</div>
-        <div><strong>Email:</strong> {formData.email}</div>
-        <div><strong>Phone:</strong> {formData.phone}</div>
-        <div><strong>Address:</strong> {formData.address}</div>
-        {type === "auto" && (
-          <>
-            <div><strong>Vehicle:</strong> {formData.vehicleYear} {formData.vehicleMake} {formData.vehicleModel}</div>
-            <div><strong>Annual Mileage:</strong> {formData.annualMileage} miles</div>
-          </>
-        )}
-        {type === "health" && (
-          <>
-            <div><strong>Height:</strong> {formData.height}</div>
-            <div><strong>Weight:</strong> {formData.weight}</div>
-            <div><strong>Smoking Status:</strong> {formData.smokingStatus}</div>
-            <div><strong>Medical Conditions:</strong> {formData.medicalConditions}</div>
-          </>
-        )}
-        <div><strong>Coverage Level:</strong> {formData.coverageLevel}</div>
-        <div><strong>Deductible:</strong> ${formData.deductible}</div>
+      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border border-blue-200">
+        <h3 className="text-xl font-semibold text-blue-900 mb-6">Review Your Information</h3>
+        <div className="bg-white p-6 rounded-lg space-y-4 shadow-sm">
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="space-y-3">
+              <div className="flex justify-between">
+                <span className="font-medium text-gray-700">Name:</span>
+                <span className="text-gray-900">{formData.firstName} {formData.lastName}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-medium text-gray-700">Email:</span>
+                <span className="text-gray-900">{formData.email}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-medium text-gray-700">Phone:</span>
+                <span className="text-gray-900">{formData.phone}</span>
+              </div>
+            </div>
+            <div className="space-y-3">
+              <div className="flex justify-between">
+                <span className="font-medium text-gray-700">Address:</span>
+                <span className="text-gray-900 text-right">{formData.address}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-medium text-gray-700">Coverage Level:</span>
+                <span className="text-gray-900 capitalize">{formData.coverageLevel}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-medium text-gray-700">Deductible:</span>
+                <span className="text-gray-900">${formData.deductible}</span>
+              </div>
+            </div>
+          </div>
+          
+          {type === "auto" && (
+            <div className="mt-6 pt-4 border-t border-gray-200">
+              <h4 className="font-semibold text-gray-800 mb-3">Vehicle Details</h4>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="flex justify-between">
+                  <span className="font-medium text-gray-700">Vehicle:</span>
+                  <span className="text-gray-900">{formData.vehicleYear} {formData.vehicleMake} {formData.vehicleModel}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="font-medium text-gray-700">Annual Mileage:</span>
+                  <span className="text-gray-900">{formData.annualMileage} miles</span>
+                </div>
+              </div>
+            </div>
+          )}
+          
+          {type === "health" && (
+            <div className="mt-6 pt-4 border-t border-gray-200">
+              <h4 className="font-semibold text-gray-800 mb-3">Health Information</h4>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <div className="flex justify-between">
+                    <span className="font-medium text-gray-700">Height:</span>
+                    <span className="text-gray-900">{formData.height}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="font-medium text-gray-700">Weight:</span>
+                    <span className="text-gray-900">{formData.weight}</span>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex justify-between">
+                    <span className="font-medium text-gray-700">Smoking Status:</span>
+                    <span className="text-gray-900 capitalize">{formData.smokingStatus}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="font-medium text-gray-700">Medical Conditions:</span>
+                    <span className="text-gray-900 capitalize">{formData.medicalConditions}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -402,42 +484,53 @@ const QuoteForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8">
-      <div className="container mx-auto px-4 max-w-4xl">
-        <Card className="shadow-xl">
-          <CardHeader className="bg-blue-600 text-white">
-            <CardTitle className="text-2xl">{getInsuranceTitle(type || "")} Quote</CardTitle>
-            <div className="mt-4">
-              <div className="flex justify-between text-sm mb-2">
-                <span>Step {currentStep} of {totalSteps}: {steps[currentStep - 1]}</span>
-                <span>{Math.round(progress)}% Complete</span>
+    <div className="min-h-screen bg-gray-50">
+      <Header />
+      
+      <div className="py-12">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <Card className="shadow-xl border-0 overflow-hidden">
+            <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+              <CardTitle className="text-2xl font-bold">{getInsuranceTitle(type || "")} Quote</CardTitle>
+              <div className="mt-6">
+                <div className="flex justify-between text-sm mb-3">
+                  <span className="font-medium">Step {currentStep} of {totalSteps}: {steps[currentStep - 1]}</span>
+                  <span className="font-medium">{Math.round(progress)}% Complete</span>
+                </div>
+                <div className="w-full bg-blue-500/30 rounded-full h-3">
+                  <div 
+                    className="bg-white h-3 rounded-full transition-all duration-300 ease-in-out"
+                    style={{ width: `${progress}%` }}
+                  ></div>
+                </div>
               </div>
-              <Progress value={progress} className="bg-blue-500" />
-            </div>
-          </CardHeader>
-          <CardContent className="p-8">
-            {renderStepContent()}
-            
-            <div className="flex justify-between mt-8">
-              <Button
-                variant="outline"
-                onClick={handlePrevious}
-                className="flex items-center"
-              >
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                {currentStep === 1 ? "Back to Home" : "Previous"}
-              </Button>
-              <Button
-                onClick={handleNext}
-                className="flex items-center bg-blue-600 hover:bg-blue-700"
-              >
-                {currentStep === totalSteps ? "Generate Quote" : "Next"}
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+            </CardHeader>
+            <CardContent className="p-8 bg-white">
+              {renderStepContent()}
+              
+              <div className="flex justify-between mt-10 pt-6 border-t border-gray-200">
+                <Button
+                  variant="outline"
+                  onClick={handlePrevious}
+                  className="flex items-center px-6 py-3 border-gray-300 text-gray-700 hover:bg-gray-50"
+                >
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  {currentStep === 1 ? "Back to Home" : "Previous"}
+                </Button>
+                <Button
+                  onClick={handleNext}
+                  className="flex items-center px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white shadow-lg"
+                >
+                  {currentStep === totalSteps ? "Generate Quote" : "Next"}
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
+      
+      <Footer />
     </div>
   );
 };
