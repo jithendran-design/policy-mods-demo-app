@@ -85,50 +85,58 @@ const Index = () => {
             return (
               <Card 
                 key={insurance.id}
-                className={`cursor-pointer transition-all duration-300 border-2 ${
+                className={`cursor-pointer transition-all duration-300 border-2 rounded-3xl ${
                   isSelected 
-                    ? 'border-primary bg-purple-50 shadow-lg' 
-                    : 'border-gray-200 hover:border-primary/40 hover:shadow-md'
-                }`}
+                    ? 'border-primary/60 bg-white shadow-xl shadow-primary/20 ring-4 ring-primary/10' 
+                    : 'border-gray-200/50 hover:border-primary/30 hover:shadow-lg hover:shadow-gray-200/50 bg-white/80 backdrop-blur-sm'
+                } transform hover:scale-[1.02] hover:-translate-y-1`}
                 onClick={() => handleInsuranceSelect(insurance.id)}
               >
-                <CardHeader className="pb-4">
+                <CardHeader className="pb-4 relative">
                   <div className="flex items-start justify-between">
-                    <div className="flex items-center space-x-3">
-                      <div className="bg-primary w-12 h-12 rounded-xl flex items-center justify-center shadow-sm">
-                        <IconComponent className="h-6 w-6 text-white" />
+                    <div className="flex items-center space-x-4">
+                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg transition-all duration-300 ${
+                        isSelected 
+                          ? 'bg-gradient-to-br from-primary to-purple-600 scale-110' 
+                          : 'bg-gradient-to-br from-primary/90 to-purple-500'
+                      }`}>
+                        <IconComponent className="h-7 w-7 text-white" />
                       </div>
                       <div>
-                        <CardTitle className="text-lg text-gray-900">{insurance.title}</CardTitle>
+                        <CardTitle className="text-xl text-gray-900 font-bold">{insurance.title}</CardTitle>
                       </div>
                     </div>
-                    <div className={`w-5 h-5 rounded-full border-2 ${
+                    <div className={`w-6 h-6 rounded-full border-2 transition-all duration-300 ${
                       isSelected 
-                        ? 'border-primary bg-primary' 
+                        ? 'border-primary bg-primary shadow-lg' 
                         : 'border-gray-300'
                     } flex items-center justify-center`}>
                       {isSelected && (
-                        <div className="w-2 h-2 bg-white rounded-full"></div>
+                        <div className="w-2.5 h-2.5 bg-white rounded-full"></div>
                       )}
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent className="pt-0">
-                  <CardDescription className="text-gray-600 mb-4">
+                  <CardDescription className="text-gray-600 mb-6 leading-relaxed">
                     {insurance.description}
                   </CardDescription>
-                  <div className="space-y-2">
-                    <div className="text-2xl font-bold text-gray-900">
+                  <div className="space-y-3">
+                    <div className="text-3xl font-bold text-gray-900">
                       Starting at {insurance.startingPrice}
-                      <span className="text-sm font-normal text-gray-500">/month</span>
+                      <span className="text-base font-normal text-gray-500">/month</span>
                     </div>
-                    <div className="text-sm text-gray-500">
+                    <div className="text-sm text-gray-500 font-medium">
                       {insurance.coverage}
                     </div>
                   </div>
-                  <div className="mt-4">
-                    <button className="text-primary text-sm font-medium flex items-center hover:text-primary/80 transition-colors">
-                      Compare plans <ArrowRight className="h-4 w-4 ml-1" />
+                  <div className="mt-6">
+                    <button className={`text-sm font-semibold flex items-center transition-all duration-200 ${
+                      isSelected 
+                        ? 'text-primary hover:text-primary/80' 
+                        : 'text-primary/80 hover:text-primary'
+                    }`}>
+                      Compare plans <ArrowRight className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1" />
                     </button>
                   </div>
                 </CardContent>
@@ -141,32 +149,32 @@ const Index = () => {
         <div className="text-center mb-16">
           <Button 
             onClick={handleGetQuote}
-            className="bg-primary hover:bg-primary/90 text-white font-medium py-3 px-8 text-lg rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
+            className="bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-500 text-white font-semibold py-4 px-10 text-lg rounded-2xl transition-all duration-200 shadow-xl hover:shadow-2xl hover:scale-105 transform"
           >
             Get Quote for {insuranceTypes.find(i => i.id === selectedInsurance)?.title}
           </Button>
         </div>
 
         {/* Features Section */}
-        <div className="mt-16 bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+        <div className="mt-16 bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl p-8 border border-gray-100/50">
           <h2 className="text-2xl font-bold text-center mb-8 text-gray-800">Why Choose SecureGuard?</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <div className="bg-gradient-to-br from-primary/10 to-purple-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Shield className="h-8 w-8 text-primary" />
               </div>
               <h3 className="font-semibold mb-2 text-gray-800">Comprehensive Coverage</h3>
               <p className="text-gray-600">Tailored policies to meet your specific needs</p>
             </div>
             <div className="text-center">
-              <div className="bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <div className="bg-gradient-to-br from-primary/10 to-purple-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <span className="text-primary font-bold text-lg">24/7</span>
               </div>
               <h3 className="font-semibold mb-2 text-gray-800">24/7 Support</h3>
               <p className="text-gray-600">Round-the-clock customer service</p>
             </div>
             <div className="text-center">
-              <div className="bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <div className="bg-gradient-to-br from-primary/10 to-purple-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <span className="text-primary font-bold text-xl">$</span>
               </div>
               <h3 className="font-semibold mb-2 text-gray-800">Competitive Rates</h3>
