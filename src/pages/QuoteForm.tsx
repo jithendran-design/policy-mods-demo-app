@@ -113,7 +113,7 @@ const QuoteForm = () => {
       <div className="py-12">
         <div className="container mx-auto px-4 max-w-4xl">
           <Card className="shadow-xl border-0 overflow-hidden rounded-2xl">
-            <CardHeader className="bg-gradient-to-r from-[#6366f1] to-[#4f46e5] text-white p-8">
+            <CardHeader className="bg-gradient-to-r from-primary to-[#8b5cf6] text-white p-8">
               <CardTitle className="text-2xl font-bold mb-6">{getInsuranceTitle(type || "")} Quote</CardTitle>
               <div>
                 <div className="flex justify-between text-sm mb-3">
@@ -143,7 +143,7 @@ const QuoteForm = () => {
                 </Button>
                 <Button
                   onClick={handleNext}
-                  className="flex items-center px-8 py-3 bg-[#6366f1] hover:bg-[#4f46e5] text-white shadow-lg rounded-lg"
+                  className="flex items-center px-8 py-3 bg-primary hover:bg-primary/90 text-white shadow-lg rounded-lg"
                 >
                   {currentStep === totalSteps ? "Generate Quote" : "Next"}
                   <ArrowRight className="w-4 h-4 ml-2" />

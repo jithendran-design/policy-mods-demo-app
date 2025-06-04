@@ -10,7 +10,7 @@ interface PersonalInformationStepProps {
 
 export const PersonalInformationStep = ({ formData, onInputChange }: PersonalInformationStepProps) => {
   return (
-    <div className="space-y-6 min-h-[400px] bg-gray-50 p-6 rounded-xl">
+    <div className="space-y-6 min-h-[400px]">
       <div className="grid md:grid-cols-2 gap-6">
         <div className="space-y-2">
           <Label htmlFor="firstName" className="text-gray-700 font-medium">First Name</Label>
@@ -19,7 +19,7 @@ export const PersonalInformationStep = ({ formData, onInputChange }: PersonalInf
             placeholder="John"
             value={formData.firstName || ""}
             onChange={(e) => onInputChange("firstName", e.target.value)}
-            className="border-gray-300 focus:border-[#6366f1] focus:ring-[#6366f1] rounded-lg bg-white"
+            className="border-gray-300 focus:border-primary focus:ring-primary rounded-lg bg-white"
           />
         </div>
         <div className="space-y-2">
@@ -29,7 +29,7 @@ export const PersonalInformationStep = ({ formData, onInputChange }: PersonalInf
             placeholder="Doe"
             value={formData.lastName || ""}
             onChange={(e) => onInputChange("lastName", e.target.value)}
-            className="border-gray-300 focus:border-[#6366f1] focus:ring-[#6366f1] rounded-lg bg-white"
+            className="border-gray-300 focus:border-primary focus:ring-primary rounded-lg bg-white"
           />
         </div>
       </div>
@@ -43,7 +43,7 @@ export const PersonalInformationStep = ({ formData, onInputChange }: PersonalInf
             placeholder="john.doe@email.com"
             value={formData.email || ""}
             onChange={(e) => onInputChange("email", e.target.value)}
-            className="border-gray-300 focus:border-[#6366f1] focus:ring-[#6366f1] rounded-lg bg-white"
+            className="border-gray-300 focus:border-primary focus:ring-primary rounded-lg bg-white"
           />
         </div>
         <div className="space-y-2">
@@ -53,7 +53,7 @@ export const PersonalInformationStep = ({ formData, onInputChange }: PersonalInf
             placeholder="(555) 123-4567"
             value={formData.phone || ""}
             onChange={(e) => onInputChange("phone", e.target.value)}
-            className="border-gray-300 focus:border-[#6366f1] focus:ring-[#6366f1] rounded-lg bg-white"
+            className="border-gray-300 focus:border-primary focus:ring-primary rounded-lg bg-white"
           />
         </div>
       </div>
@@ -65,7 +65,7 @@ export const PersonalInformationStep = ({ formData, onInputChange }: PersonalInf
           placeholder="123 Main St, City, State 12345"
           value={formData.address || ""}
           onChange={(e) => onInputChange("address", e.target.value)}
-          className="border-gray-300 focus:border-[#6366f1] focus:ring-[#6366f1] rounded-lg bg-white"
+          className="border-gray-300 focus:border-primary focus:ring-primary rounded-lg bg-white"
         />
       </div>
 
@@ -77,13 +77,13 @@ export const PersonalInformationStep = ({ formData, onInputChange }: PersonalInf
             type="date"
             value={formData.dateOfBirth || ""}
             onChange={(e) => onInputChange("dateOfBirth", e.target.value)}
-            className="border-gray-300 focus:border-[#6366f1] focus:ring-[#6366f1] rounded-lg bg-white"
+            className="border-gray-300 focus:border-primary focus:ring-primary rounded-lg bg-white"
           />
         </div>
         <div className="space-y-2">
           <Label htmlFor="gender" className="text-gray-700 font-medium">Gender</Label>
           <Select onValueChange={(value) => onInputChange("gender", value)}>
-            <SelectTrigger className="border-gray-300 focus:border-[#6366f1] focus:ring-[#6366f1] rounded-lg bg-white">
+            <SelectTrigger className="border-gray-300 focus:border-primary focus:ring-primary rounded-lg bg-white">
               <SelectValue placeholder="Select gender" />
             </SelectTrigger>
             <SelectContent>
