@@ -4,8 +4,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Shield, Check, Download, Mail, Phone } from "lucide-react";
+import { Shield, Check, Download, Mail, Phone, MapPin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const Proposal = () => {
   const location = useLocation();
@@ -63,51 +65,126 @@ const Proposal = () => {
     return titles[type] || "Insurance";
   };
 
-  const getCoverageDetails = () => {
+  const getDetailedCoverage = () => {
     const details = {
-      auto: [
-        "Liability Coverage: $100,000/$300,000",
-        "Collision Coverage: Actual Cash Value",
-        "Comprehensive Coverage: Actual Cash Value", 
-        "Uninsured Motorist: $100,000/$300,000",
-        "Medical Payments: $5,000",
-        "Roadside Assistance: 24/7"
-      ],
-      home: [
-        "Dwelling Coverage: $250,000",
-        "Personal Property: $125,000",
-        "Liability Protection: $300,000",
-        "Medical Payments: $5,000",
-        "Loss of Use: $50,000",
-        "Natural Disaster Protection"
-      ],
-      health: [
-        "Annual Deductible: $" + (formData.deductible || "1,000"),
-        "Primary Care: $25 copay",
-        "Specialist: $45 copay",
-        "Emergency Room: $350 copay",
-        "Prescription Drugs: $10/$35/$70",
-        "Preventive Care: 100% covered"
-      ],
-      life: [
-        "Death Benefit: $" + (formData.coverageAmount || "500,000"),
-        "Term: 20 years",
-        "Premium Guaranteed: Yes",
-        "Conversion Option: Available",
-        "Waiver of Premium: Included",
-        "Accelerated Death Benefit: Included"
-      ],
-      business: [
-        "General Liability: $1,000,000",
-        "Property Coverage: $500,000",
-        "Business Interruption: $250,000",
-        "Cyber Liability: $100,000",
-        "Workers Compensation: As required",
-        "Professional Liability: $500,000"
-      ]
+      auto: {
+        title: "Auto Policy - Vehicle Coverage",
+        coverages: [
+          { name: "Liability Coverage - Bodily Injury", amount: "$100,000/$300,000" },
+          { name: "Liability Coverage - Property Damage", amount: "$100,000" },
+          { name: "Collision Coverage", amount: "Actual Cash Value" },
+          { name: "Comprehensive Coverage", amount: "Actual Cash Value" },
+          { name: "Uninsured Motorist - Bodily Injury", amount: "$100,000/$300,000" },
+          { name: "Uninsured Motorist - Property Damage", amount: "$25,000" },
+          { name: "Medical Payments", amount: "$5,000" },
+          { name: "Personal Injury Protection", amount: "$10,000" }
+        ],
+        deductibles: [
+          { type: "Collision Deductible", amount: "$500" },
+          { type: "Comprehensive Deductible", amount: "$250" }
+        ],
+        endorsements: [
+          "Roadside Assistance Coverage",
+          "Rental Car Coverage",
+          "Gap Coverage",
+          "New Car Replacement"
+        ]
+      },
+      home: {
+        title: `HOB Home Policy - ${formData.address || "Property Address"}`,
+        coverages: [
+          { name: "Coverage A - Dwelling", amount: "$285,000" },
+          { name: "Coverage B - Other Structures", amount: "$28,500" },
+          { name: "Coverage C - Personal Property", amount: "$171,000" },
+          { name: "Coverage D - Loss of Use", amount: "$57,000" },
+          { name: "Coverage E - Personal Liability", amount: "$500,000" },
+          { name: "Coverage F - Medical Payments to Others", amount: "$5,000" }
+        ],
+        deductibles: [
+          { type: "All Perils Deductible", amount: "1%" },
+          { type: "Wind/Hail Deductible", amount: "2%" },
+          { type: "Named Storm Deductible", amount: "2%" }
+        ],
+        endorsements: [
+          "Water Backup Coverage",
+          "Foundation Coverage", 
+          "Accidental Water Damage",
+          "Jewelry Coverage",
+          "Window/Glass Coverage",
+          "Contents Replacement Cost",
+          "100% Replacement Cost"
+        ]
+      },
+      health: {
+        title: "Health Insurance Policy",
+        coverages: [
+          { name: "Annual Deductible (Individual)", amount: `$${formData.deductible || "1,000"}` },
+          { name: "Annual Deductible (Family)", amount: `$${(parseInt(formData.deductible || "1000") * 2).toLocaleString()}` },
+          { name: "Out-of-Pocket Maximum (Individual)", amount: "$8,700" },
+          { name: "Out-of-Pocket Maximum (Family)", amount: "$17,400" },
+          { name: "Primary Care Physician", amount: "$25 copay" },
+          { name: "Specialist", amount: "$45 copay" },
+          { name: "Emergency Room", amount: "$350 copay" },
+          { name: "Urgent Care", amount: "$75 copay" }
+        ],
+        deductibles: [
+          { type: "Prescription Drugs - Generic", amount: "$10 copay" },
+          { type: "Prescription Drugs - Brand", amount: "$35 copay" },
+          { type: "Prescription Drugs - Specialty", amount: "$70 copay" }
+        ],
+        endorsements: [
+          "Preventive Care - 100% covered",
+          "Mental Health Coverage",
+          "Maternity Coverage",
+          "Prescription Drug Coverage"
+        ]
+      },
+      life: {
+        title: "Term Life Insurance Policy",
+        coverages: [
+          { name: "Death Benefit", amount: `$${(formData.coverageAmount || "500,000").toLocaleString()}` },
+          { name: "Term Length", amount: "20 years" },
+          { name: "Premium Guarantee", amount: "Level for term" },
+          { name: "Conversion Option", amount: "Available until age 65" },
+          { name: "Waiver of Premium", amount: "Included" },
+          { name: "Accelerated Death Benefit", amount: "Up to 75% of face amount" }
+        ],
+        deductibles: [],
+        endorsements: [
+          "Terminal Illness Benefit",
+          "Accidental Death Benefit",
+          "Child Term Rider Available",
+          "Spouse Term Rider Available"
+        ]
+      },
+      business: {
+        title: "Commercial Package Policy",
+        coverages: [
+          { name: "General Liability", amount: "$1,000,000 per occurrence" },
+          { name: "General Liability Aggregate", amount: "$2,000,000" },
+          { name: "Commercial Property", amount: "$500,000" },
+          { name: "Business Personal Property", amount: "$250,000" },
+          { name: "Business Interruption", amount: "$250,000" },
+          { name: "Cyber Liability", amount: "$100,000" },
+          { name: "Professional Liability", amount: "$500,000" },
+          { name: "Workers Compensation", amount: "As required by law" }
+        ],
+        deductibles: [
+          { type: "Property Deductible", amount: "$1,000" },
+          { type: "Cyber Liability Deductible", amount: "$2,500" }
+        ],
+        endorsements: [
+          "Equipment Breakdown Coverage",
+          "Employment Practices Liability",
+          "Directors & Officers Liability",
+          "Commercial Auto Liability"
+        ]
+      }
     };
-    return details[insuranceType as keyof typeof details] || [];
+    return details[insuranceType as keyof typeof details] || details.auto;
   };
+
+  const coverageDetails = getDetailedCoverage();
 
   const handleAcceptProposal = () => {
     toast({
@@ -130,13 +207,28 @@ const Proposal = () => {
     });
   };
 
+  const agentInfo = {
+    name: "Sarah Mitchell",
+    phone: "(555) 123-4567",
+    email: "sarah.mitchell@secureguard.com",
+    license: "TX-INS-8847291"
+  };
+
+  const currentDate = new Date().toLocaleDateString('en-US', { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  });
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8">
-      <div className="container mx-auto px-4 max-w-4xl">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-indigo-200">
+      <Header />
+      
+      <div className="container mx-auto px-4 py-8 max-w-6xl">
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center mb-4">
-            <Shield className="h-8 w-8 text-blue-600 mr-2" />
+            <Shield className="h-8 w-8 text-[#3C71DD] mr-2" />
             <h1 className="text-3xl font-bold text-gray-900">Insurance Proposal</h1>
           </div>
           <Badge className="bg-green-100 text-green-800 px-4 py-2">
@@ -144,75 +236,145 @@ const Proposal = () => {
           </Badge>
         </div>
 
+        {/* Company Header */}
+        <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
+          <div className="flex justify-between items-start">
+            <div>
+              <div className="flex items-center mb-2">
+                <Shield className="h-10 w-10 text-[#3C71DD] mr-3" />
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900">SecureGuard</h2>
+                  <p className="text-gray-600">Financial Services</p>
+                </div>
+              </div>
+            </div>
+            <div className="text-right text-sm text-gray-600">
+              <div className="font-semibold">SecureGuard Insurance Agency</div>
+              <div>2800 Financial Plaza</div>
+              <div>Dallas, TX 75201</div>
+              <div>(214) 555-SECURE</div>
+              <div>www.secureguard.com</div>
+            </div>
+          </div>
+        </div>
+
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Main Proposal */}
           <div className="lg:col-span-2">
             <Card className="shadow-xl">
-              <CardHeader className="bg-blue-600 text-white">
-                <CardTitle className="text-xl">{getInsuranceTitle(insuranceType)} Policy</CardTitle>
-                <p className="text-blue-100">Policy Number: SG-{insuranceType.toUpperCase()}-{Date.now().toString().slice(-6)}</p>
-              </CardHeader>
-              <CardContent className="p-6">
-                {/* Customer Information */}
-                <div className="mb-6">
-                  <h3 className="text-lg font-semibold mb-3">Policyholder Information</h3>
-                  <div className="bg-gray-50 p-4 rounded-lg">
-                    <div className="grid md:grid-cols-2 gap-3">
-                      <div><strong>Name:</strong> {formData.firstName} {formData.lastName}</div>
-                      <div><strong>Email:</strong> {formData.email}</div>
-                      <div><strong>Phone:</strong> {formData.phone}</div>
-                      <div><strong>Address:</strong> {formData.address}</div>
+              <CardHeader className="bg-[#3C71DD] text-white">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <CardTitle className="text-xl">Insurance Proposal Prepared Exclusively For:</CardTitle>
+                    <div className="mt-2 text-blue-100">
+                      <div className="font-semibold">{formData.firstName} {formData.lastName}</div>
+                      <div>{formData.address}</div>
                     </div>
                   </div>
+                  <div className="text-right text-blue-100">
+                    <div className="font-semibold">Prepared By</div>
+                    <div>{agentInfo.name}</div>
+                    <div>{agentInfo.phone}</div>
+                    <div>{agentInfo.email}</div>
+                    <div>{currentDate}</div>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="p-6">
+                {/* Introduction */}
+                <div className="mb-6">
+                  <p className="text-gray-700">
+                    Thank you for the opportunity to assist you in assessing your personal insurance needs. 
+                    I am pleased to present to you the following personal insurance proposal:
+                  </p>
                 </div>
 
-                <Separator className="my-6" />
-
-                {/* Coverage Details */}
-                <div className="mb-6">
-                  <h3 className="text-lg font-semibold mb-3">Coverage Details</h3>
-                  <div className="space-y-2">
-                    {getCoverageDetails().map((detail, index) => (
-                      <div key={index} className="flex items-center">
-                        <Check className="h-4 w-4 text-green-600 mr-2" />
-                        <span>{detail}</span>
+                {/* Coverage Details Box */}
+                <div className="bg-gray-50 rounded-lg p-6 mb-6">
+                  <h3 className="text-lg font-semibold mb-4 text-gray-800">{coverageDetails.title}</h3>
+                  
+                  {/* Main Coverage */}
+                  <div className="space-y-3 mb-6">
+                    {coverageDetails.coverages.map((coverage, index) => (
+                      <div key={index} className="flex justify-between items-center py-1">
+                        <span className="text-gray-700">{coverage.name}</span>
+                        <span className="font-semibold">{coverage.amount}</span>
                       </div>
                     ))}
                   </div>
-                </div>
 
-                <Separator className="my-6" />
-
-                {/* Premium Information */}
-                <div className="mb-6">
-                  <h3 className="text-lg font-semibold mb-3">Premium Information</h3>
-                  <div className="bg-blue-50 p-4 rounded-lg">
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div>
-                        <div className="text-sm text-gray-600">Monthly Premium</div>
-                        <div className="text-2xl font-bold text-blue-600">${monthlyPremium}</div>
-                      </div>
-                      <div>
-                        <div className="text-sm text-gray-600">Annual Premium</div>
-                        <div className="text-xl font-semibold">${annualPremium}</div>
+                  {/* Deductibles */}
+                  {coverageDetails.deductibles.length > 0 && (
+                    <div className="mb-6">
+                      <h4 className="font-semibold mb-2 text-gray-800">Deductibles:</h4>
+                      <div className="space-y-2">
+                        {coverageDetails.deductibles.map((deductible, index) => (
+                          <div key={index} className="flex justify-between items-center">
+                            <span className="text-gray-700">{deductible.type}</span>
+                            <span className="font-semibold">{deductible.amount}</span>
+                          </div>
+                        ))}
                       </div>
                     </div>
-                    <div className="mt-3 text-sm text-green-600">
-                      Save ${savings} per year with annual payment!
+                  )}
+
+                  {/* Endorsements */}
+                  <div className="mb-6">
+                    <h4 className="font-semibold mb-2 text-gray-800">
+                      {insuranceType === "home" ? "Endorsements:" : 
+                       insuranceType === "auto" ? "Additional Coverage:" : 
+                       "Benefits:"}
+                    </h4>
+                    <div className="text-gray-700 text-sm">
+                      {coverageDetails.endorsements.join(", ")}
+                    </div>
+                  </div>
+
+                  {/* Premium Breakdown */}
+                  <div className="border-t pt-4">
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="font-semibold">Premium</span>
+                        <span className="font-bold text-xl text-[#3C71DD]">${monthlyPremium.toLocaleString()}.00</span>
+                      </div>
+                      {insuranceType === "home" && (
+                        <>
+                          <div className="flex justify-between items-center text-sm">
+                            <span>Flood Insurance (optional)</span>
+                            <span>$246.00</span>
+                          </div>
+                          <div className="flex justify-between items-center text-sm">
+                            <span>Agency Fee</span>
+                            <span>$75.00</span>
+                          </div>
+                          <Separator className="my-2" />
+                          <div className="flex justify-between items-center">
+                            <span className="font-semibold">Total WITHOUT Flood Insurance</span>
+                            <span className="font-bold">${(monthlyPremium + 75).toLocaleString()}.00</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="font-semibold">Total WITH Flood Insurance</span>
+                            <span className="font-bold">${(monthlyPremium + 246 + 75).toLocaleString()}.00</span>
+                          </div>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
 
-                {/* Terms & Conditions */}
-                <div className="text-sm text-gray-600 bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold mb-2">Important Terms:</h4>
-                  <ul className="space-y-1">
-                    <li>• This quote is valid for 30 days</li>
-                    <li>• Policy effective date begins upon acceptance and first payment</li>
-                    <li>• Coverage is subject to underwriting approval</li>
-                    <li>• Deductible applies per claim</li>
-                    <li>• Premium may be adjusted based on final underwriting</li>
-                  </ul>
+                {/* Additional Comments */}
+                <div className="mb-6">
+                  <h3 className="text-lg font-semibold mb-3">Additional Comments</h3>
+                  <p className="text-gray-700 text-sm">
+                    Underwritten through AM Best Rated Insurance Company
+                  </p>
+                </div>
+
+                {/* Disclaimer */}
+                <div className="text-xs text-gray-500 bg-gray-50 p-4 rounded-lg">
+                  <p className="mb-2">
+                    <strong>Disclosure:</strong> The premium estimates and coverage limits outlined in the proposal above are based upon the accuracy of the information you provided and may not represent all coverages available. This proposal does not constitute a contract or offer of insurance and premium amounts cannot be guaranteed until coverage is purchased. For additional information regarding the assumptions used to prepare this proposal or to purchase insurance coverage, please contact your agent at the phone number listed above.
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -234,7 +396,7 @@ const Proposal = () => {
                 </Button>
                 <Button 
                   variant="outline" 
-                  className="w-full"
+                  className="w-full border-[#3C71DD] text-[#3C71DD] hover:bg-[#3C71DD] hover:text-white"
                   onClick={handleDownload}
                 >
                   <Download className="w-4 h-4 mr-2" />
@@ -242,7 +404,7 @@ const Proposal = () => {
                 </Button>
                 <Button 
                   variant="outline" 
-                  className="w-full"
+                  className="w-full border-[#3C71DD] text-[#3C71DD] hover:bg-[#3C71DD] hover:text-white"
                   onClick={handleEmailProposal}
                 >
                   <Mail className="w-4 h-4 mr-2" />
@@ -250,7 +412,7 @@ const Proposal = () => {
                 </Button>
                 <Button 
                   variant="outline" 
-                  className="w-full"
+                  className="w-full border-[#3C71DD] text-[#3C71DD] hover:bg-[#3C71DD] hover:text-white"
                   onClick={() => navigate("/")}
                 >
                   Get Another Quote
@@ -258,28 +420,42 @@ const Proposal = () => {
               </CardContent>
             </Card>
 
-            {/* Contact Information */}
+            {/* Agent Contact Information */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">Need Help?</CardTitle>
+                <CardTitle className="text-lg">Your Agent</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <div className="flex items-center">
-                  <Phone className="w-4 h-4 mr-2 text-blue-600" />
-                  <span>(555) 123-SECURE</span>
+                <div className="text-center mb-4">
+                  <div className="w-16 h-16 bg-[#3C71DD] rounded-full flex items-center justify-center mx-auto mb-2">
+                    <span className="text-white font-bold text-xl">SM</span>
+                  </div>
+                  <div className="font-semibold">{agentInfo.name}</div>
+                  <div className="text-sm text-gray-600">Licensed Agent</div>
+                  <div className="text-xs text-gray-500">License #{agentInfo.license}</div>
                 </div>
-                <div className="flex items-center">
-                  <Mail className="w-4 h-4 mr-2 text-blue-600" />
-                  <span>quotes@secureguard.com</span>
+                <div className="space-y-2">
+                  <div className="flex items-center">
+                    <Phone className="w-4 h-4 mr-2 text-[#3C71DD]" />
+                    <span className="text-sm">{agentInfo.phone}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Mail className="w-4 h-4 mr-2 text-[#3C71DD]" />
+                    <span className="text-sm">{agentInfo.email}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <MapPin className="w-4 h-4 mr-2 text-[#3C71DD]" />
+                    <span className="text-sm">Dallas, TX Office</span>
+                  </div>
                 </div>
-                <div className="text-sm text-gray-600">
-                  Our agents are available 24/7 to help you with your insurance needs.
+                <div className="text-xs text-gray-600 mt-3">
+                  Available Monday-Friday 8AM-6PM CST for personalized service and claims support.
                 </div>
               </CardContent>
             </Card>
 
             {/* Benefits */}
-            <Card className="bg-gradient-to-br from-blue-500 to-blue-600 text-white">
+            <Card className="bg-gradient-to-br from-[#3C71DD] to-[#4F7FE6] text-white">
               <CardHeader>
                 <CardTitle className="text-lg">Why SecureGuard?</CardTitle>
               </CardHeader>
@@ -300,11 +476,17 @@ const Proposal = () => {
                   <Check className="w-4 h-4 mr-2" />
                   <span className="text-sm">Fast Claims Processing</span>
                 </div>
+                <div className="flex items-center">
+                  <Check className="w-4 h-4 mr-2" />
+                  <span className="text-sm">Local Agent Support</span>
+                </div>
               </CardContent>
             </Card>
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };
