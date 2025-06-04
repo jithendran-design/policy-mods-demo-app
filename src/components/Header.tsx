@@ -1,6 +1,15 @@
 
-import { Shield, Phone, Mail, User, Menu } from "lucide-react";
+import { Shield, Phone, Mail, User, Menu, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,6 +19,14 @@ import {
 } from "@/components/ui/navigation-menu";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const { user, signOut } = useAuth();
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/");
+  };
+
   return (
     <header className="bg-white shadow-sm border-b border-primary/20">
       {/* Top Bar */}
@@ -26,14 +43,48 @@ const Header = () => {
             </div>
           </div>
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="sm" className="text-white hover:text-white/90 hover:bg-primary/80">
-              <User className="h-4 w-4 mr-2" />
-              Login
-            </Button>
-            <span className="text-white/70">|</span>
-            <Button variant="ghost" size="sm" className="text-white hover:text-white/90 hover:bg-primary/80">
-              Register
-            </Button>
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="text-white hover:text-white/90 hover:bg-primary/80">
+                    <User className="h-4 w-4 mr-2" />
+                    {user.email}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <DropdownMenuItem onClick={() => navigate("/")}>
+                    <User className="h-4 w-4 mr-2" />
+                    Dashboard
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleSignOut}>
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="text-white hover:text-white/90 hover:bg-primary/80"
+                  onClick={() => navigate("/auth")}
+                >
+                  <User className="h-4 w-4 mr-2" />
+                  Login
+                </Button>
+                <span className="text-white/70">|</span>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="text-white hover:text-white/90 hover:bg-primary/80"
+                  onClick={() => navigate("/auth")}
+                >
+                  Register
+                </Button>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -41,7 +92,7 @@ const Header = () => {
       {/* Main Header */}
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center">
+          <div className="flex items-center cursor-pointer" onClick={() => navigate("/")}>
             <Shield className="h-10 w-10 text-primary mr-3" />
             <div>
               <h1 className="text-2xl font-bold text-gray-900">SecureGuard</h1>
@@ -95,7 +146,10 @@ const Header = () => {
           </NavigationMenu>
 
           <div className="flex items-center space-x-3">
-            <Button className="bg-primary hover:bg-primary/90 text-white hidden md:inline-flex shadow-lg rounded-lg">
+            <Button 
+              className="bg-primary hover:bg-primary/90 text-white hidden md:inline-flex shadow-lg rounded-lg"
+              onClick={() => navigate("/")}
+            >
               Get a Quote
             </Button>
             <Button variant="outline" size="icon" className="md:hidden border-primary text-primary hover:bg-primary hover:text-white">
