@@ -236,7 +236,7 @@ const Proposal = () => {
         </div>
 
         {/* Company Header */}
-        <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
+        <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 border border-gray-100">
           <div className="flex justify-between items-start">
             <div>
               <div className="flex items-center mb-2">
@@ -260,8 +260,8 @@ const Proposal = () => {
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Main Proposal */}
           <div className="lg:col-span-2">
-            <Card className="shadow-xl">
-              <CardHeader className="bg-primary text-white">
+            <Card className="shadow-xl rounded-2xl border border-gray-100">
+              <CardHeader className="bg-primary text-white rounded-t-2xl">
                 <div className="flex justify-between items-start">
                   <div>
                     <CardTitle className="text-xl">Insurance Proposal Prepared Exclusively For:</CardTitle>
@@ -289,7 +289,7 @@ const Proposal = () => {
                 </div>
 
                 {/* Coverage Details Box */}
-                <div className="bg-gray-50 rounded-lg p-6 mb-6">
+                <div className="bg-gray-50 rounded-xl p-6 mb-6">
                   <h3 className="text-lg font-semibold mb-4 text-gray-800">{coverageDetails.title}</h3>
                   
                   {/* Main Coverage */}
@@ -370,7 +370,7 @@ const Proposal = () => {
                 </div>
 
                 {/* Disclaimer */}
-                <div className="text-xs text-gray-500 bg-gray-50 p-4 rounded-lg">
+                <div className="text-xs text-gray-500 bg-gray-50 p-4 rounded-xl">
                   <p className="mb-2">
                     <strong>Disclosure:</strong> The premium estimates and coverage limits outlined in the proposal above are based upon the accuracy of the information you provided and may not represent all coverages available. This proposal does not constitute a contract or offer of insurance and premium amounts cannot be guaranteed until coverage is purchased. For additional information regarding the assumptions used to prepare this proposal or to purchase insurance coverage, please contact your agent at the phone number listed above.
                   </p>
@@ -382,20 +382,20 @@ const Proposal = () => {
           {/* Actions Sidebar */}
           <div className="space-y-6">
             {/* Quick Actions */}
-            <Card>
+            <Card className="rounded-2xl border border-gray-100">
               <CardHeader>
                 <CardTitle className="text-lg">Quick Actions</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <Button 
-                  className="w-full bg-green-600 hover:bg-green-700"
+                  className="w-full bg-green-600 hover:bg-green-700 rounded-lg shadow-lg"
                   onClick={handleAcceptProposal}
                 >
                   Accept Proposal
                 </Button>
                 <Button 
                   variant="outline" 
-                  className="w-full border-primary text-primary hover:bg-primary hover:text-white"
+                  className="w-full border-primary text-primary hover:bg-primary hover:text-white rounded-lg"
                   onClick={handleDownload}
                 >
                   <Download className="w-4 h-4 mr-2" />
@@ -403,7 +403,7 @@ const Proposal = () => {
                 </Button>
                 <Button 
                   variant="outline" 
-                  className="w-full border-primary text-primary hover:bg-primary hover:text-white"
+                  className="w-full border-primary text-primary hover:bg-primary hover:text-white rounded-lg"
                   onClick={handleEmailProposal}
                 >
                   <Mail className="w-4 h-4 mr-2" />
@@ -411,7 +411,7 @@ const Proposal = () => {
                 </Button>
                 <Button 
                   variant="outline" 
-                  className="w-full border-primary text-primary hover:bg-primary hover:text-white"
+                  className="w-full border-primary text-primary hover:bg-primary hover:text-white rounded-lg"
                   onClick={() => navigate("/")}
                 >
                   Get Another Quote
@@ -420,13 +420,13 @@ const Proposal = () => {
             </Card>
 
             {/* Agent Contact Information */}
-            <Card>
+            <Card className="rounded-2xl border border-gray-100">
               <CardHeader>
                 <CardTitle className="text-lg">Your Agent</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="text-center mb-4">
-                  <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-2">
+                  <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-2">
                     <span className="text-white font-bold text-xl">SM</span>
                   </div>
                   <div className="font-semibold">{agentInfo.name}</div>
@@ -454,7 +454,7 @@ const Proposal = () => {
             </Card>
 
             {/* Benefits */}
-            <Card className="bg-gradient-to-br from-primary to-purple-700 text-white">
+            <Card className="bg-gradient-to-br from-primary to-purple-600 text-white rounded-2xl">
               <CardHeader>
                 <CardTitle className="text-lg">Why SecureGuard?</CardTitle>
               </CardHeader>

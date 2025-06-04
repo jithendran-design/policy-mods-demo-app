@@ -63,7 +63,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-purple-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-purple-100 to-purple-200">
       <Header />
       
       <div className="container mx-auto px-4 py-12">
@@ -95,7 +95,7 @@ const Index = () => {
                 <CardHeader className="pb-4">
                   <div className="flex items-start justify-between">
                     <div className="flex items-center space-x-3">
-                      <div className="bg-primary w-12 h-12 rounded-lg flex items-center justify-center">
+                      <div className="bg-primary w-12 h-12 rounded-xl flex items-center justify-center shadow-sm">
                         <IconComponent className="h-6 w-6 text-white" />
                       </div>
                       <div>
@@ -141,32 +141,32 @@ const Index = () => {
         <div className="text-center mb-16">
           <Button 
             onClick={handleGetQuote}
-            className="bg-primary hover:bg-primary/90 text-white font-medium py-3 px-8 text-lg rounded-lg transition-colors duration-200"
+            className="bg-primary hover:bg-primary/90 text-white font-medium py-3 px-8 text-lg rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
           >
             Get Quote for {insuranceTypes.find(i => i.id === selectedInsurance)?.title}
           </Button>
         </div>
 
         {/* Features Section */}
-        <div className="mt-16 bg-white rounded-xl shadow-xl p-8 border border-primary/10">
+        <div className="mt-16 bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
           <h2 className="text-2xl font-bold text-center mb-8 text-gray-800">Why Choose SecureGuard?</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Shield className="h-8 w-8 text-primary" />
               </div>
               <h3 className="font-semibold mb-2 text-gray-800">Comprehensive Coverage</h3>
               <p className="text-gray-600">Tailored policies to meet your specific needs</p>
             </div>
             <div className="text-center">
-              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <span className="text-primary font-bold text-lg">24/7</span>
               </div>
               <h3 className="font-semibold mb-2 text-gray-800">24/7 Support</h3>
               <p className="text-gray-600">Round-the-clock customer service</p>
             </div>
             <div className="text-center">
-              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <span className="text-primary font-bold text-xl">$</span>
               </div>
               <h3 className="font-semibold mb-2 text-gray-800">Competitive Rates</h3>

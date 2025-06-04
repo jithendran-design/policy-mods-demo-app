@@ -95,7 +95,7 @@ const Header = () => {
           </NavigationMenu>
 
           <div className="flex items-center space-x-3">
-            <Button className="bg-primary hover:bg-primary/90 text-white hidden md:inline-flex">
+            <Button className="bg-primary hover:bg-primary/90 text-white hidden md:inline-flex shadow-lg rounded-lg">
               Get a Quote
             </Button>
             <Button variant="outline" size="icon" className="md:hidden border-primary text-primary hover:bg-primary hover:text-white">
