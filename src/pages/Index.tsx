@@ -17,7 +17,6 @@ const Index = () => {
       title: "Auto Insurance",
       description: "Protect your vehicle with comprehensive coverage",
       icon: Car,
-      color: "bg-primary",
       startingPrice: "$89",
       coverage: "Up to $1M coverage"
     },
@@ -26,7 +25,6 @@ const Index = () => {
       title: "Home Insurance", 
       description: "Secure your home and belongings",
       icon: Home,
-      color: "bg-primary/90",
       startingPrice: "$156",
       coverage: "Up to $2M coverage"
     },
@@ -35,7 +33,6 @@ const Index = () => {
       title: "Health Insurance",
       description: "Comprehensive health coverage for you and your family",
       icon: Heart,
-      color: "bg-primary/80",
       startingPrice: "$299",
       coverage: "Individual & Family plans"
     },
@@ -44,7 +41,6 @@ const Index = () => {
       title: "Life Insurance",
       description: "Financial protection for your loved ones",
       icon: Shield,
-      color: "bg-primary/70",
       startingPrice: "$45",
       coverage: "Up to $5M coverage"
     },
@@ -53,7 +49,6 @@ const Index = () => {
       title: "Business Insurance",
       description: "Protect your business operations and assets",
       icon: Briefcase,
-      color: "bg-primary/60",
       startingPrice: "$199",
       coverage: "Comprehensive business protection"
     }
@@ -68,7 +63,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-blue-200">
+    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-purple-50 to-blue-50">
       <Header />
       
       <div className="container mx-auto px-4 py-12">
@@ -92,7 +87,7 @@ const Index = () => {
                 key={insurance.id}
                 className={`cursor-pointer transition-all duration-300 border-2 ${
                   isSelected 
-                    ? 'border-primary bg-blue-50 shadow-lg' 
+                    ? 'border-primary bg-purple-50 shadow-lg' 
                     : 'border-gray-200 hover:border-primary/40 hover:shadow-md'
                 }`}
                 onClick={() => handleInsuranceSelect(insurance.id)}
@@ -100,7 +95,7 @@ const Index = () => {
                 <CardHeader className="pb-4">
                   <div className="flex items-start justify-between">
                     <div className="flex items-center space-x-3">
-                      <div className={`${insurance.color} w-12 h-12 rounded-lg flex items-center justify-center`}>
+                      <div className="bg-primary w-12 h-12 rounded-lg flex items-center justify-center">
                         <IconComponent className="h-6 w-6 text-white" />
                       </div>
                       <div>
