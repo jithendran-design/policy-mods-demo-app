@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -37,7 +36,7 @@ const QuoteForm = () => {
       case "home":
         return ["Personal Information", "Property Details", "Coverage Options", "Review & Quote"];
       case "health":
-        return ["Personal Information", "Health Information", "Coverage Preferences", "Review & Quote"];
+        return ["Personal Information", "Health Information", "Review & Quote"];
       case "life":
         return ["Personal Information", "Health & Lifestyle", "Coverage Amount", "Review & Quote"];
       case "business":
@@ -150,6 +149,90 @@ const QuoteForm = () => {
               <SelectItem value="male">Male</SelectItem>
               <SelectItem value="female">Female</SelectItem>
               <SelectItem value="other">Other</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderHealthInformation = () => (
+    <div className="space-y-6">
+      <div className="grid md:grid-cols-2 gap-4">
+        <div>
+          <Label htmlFor="height">Height</Label>
+          <Input
+            id="height"
+            placeholder="5'8\""
+            value={formData.height || ""}
+            onChange={(e) => handleInputChange("height", e.target.value)}
+          />
+        </div>
+        <div>
+          <Label htmlFor="weight">Weight</Label>
+          <Input
+            id="weight"
+            placeholder="150 lbs"
+            value={formData.weight || ""}
+            onChange={(e) => handleInputChange("weight", e.target.value)}
+          />
+        </div>
+      </div>
+
+      <div>
+        <Label htmlFor="smokingStatus">Smoking Status</Label>
+        <Select onValueChange={(value) => handleInputChange("smokingStatus", value)}>
+          <SelectTrigger>
+            <SelectValue placeholder="Select smoking status" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="never">Never smoked</SelectItem>
+            <SelectItem value="former">Former smoker</SelectItem>
+            <SelectItem value="current">Current smoker</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div>
+        <Label htmlFor="medicalConditions">Pre-existing Medical Conditions</Label>
+        <Select onValueChange={(value) => handleInputChange("medicalConditions", value)}>
+          <SelectTrigger>
+            <SelectValue placeholder="Select if applicable" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="none">None</SelectItem>
+            <SelectItem value="diabetes">Diabetes</SelectItem>
+            <SelectItem value="heart">Heart condition</SelectItem>
+            <SelectItem value="other">Other (please specify)</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-4">
+        <div>
+          <Label htmlFor="coverageLevel">Coverage Level</Label>
+          <Select onValueChange={(value) => handleInputChange("coverageLevel", value)}>
+            <SelectTrigger>
+              <SelectValue placeholder="Select coverage level" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="basic">Basic Coverage</SelectItem>
+              <SelectItem value="standard">Standard Coverage</SelectItem>
+              <SelectItem value="premium">Premium Coverage</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        <div>
+          <Label htmlFor="deductible">Deductible</Label>
+          <Select onValueChange={(value) => handleInputChange("deductible", value)}>
+            <SelectTrigger>
+              <SelectValue placeholder="Select deductible" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="250">$250</SelectItem>
+              <SelectItem value="500">$500</SelectItem>
+              <SelectItem value="1000">$1,000</SelectItem>
+              <SelectItem value="2500">$2,500</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -286,6 +369,14 @@ const QuoteForm = () => {
             <div><strong>Annual Mileage:</strong> {formData.annualMileage} miles</div>
           </>
         )}
+        {type === "health" && (
+          <>
+            <div><strong>Height:</strong> {formData.height}</div>
+            <div><strong>Weight:</strong> {formData.weight}</div>
+            <div><strong>Smoking Status:</strong> {formData.smokingStatus}</div>
+            <div><strong>Medical Conditions:</strong> {formData.medicalConditions}</div>
+          </>
+        )}
         <div><strong>Coverage Level:</strong> {formData.coverageLevel}</div>
         <div><strong>Deductible:</strong> ${formData.deductible}</div>
       </div>
@@ -296,10 +387,12 @@ const QuoteForm = () => {
     if (currentStep === 1) return renderPersonalInformation();
     if (currentStep === 2) {
       if (type === "auto") return renderAutoDetails();
+      if (type === "health") return renderHealthInformation();
       return renderCoverageOptions();
     }
     if (currentStep === 3) {
       if (type === "auto") return renderCoverageOptions();
+      if (type === "health") return renderReview();
       return renderReview();
     }
     if (currentStep === 4) return renderReview();
